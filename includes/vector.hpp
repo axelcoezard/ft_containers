@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 15:00:55 by acoezard          #+#    #+#             */
-/*   Updated: 2022/01/05 16:36:05 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/01/05 16:37:50 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ namespace ft
 			{
 			
 			}
+
 			/* **********************************************
 			 * ITERATORS
 			 * *********************************************/
@@ -276,7 +277,7 @@ namespace ft
 			{
 			
 			}
-	} 
+	}; 
 
 	template<class T, class Alloc>
 	bool operator==(const vector<T, Alloc> & lhs, const vector<T, Alloc> & rhs)
