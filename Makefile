@@ -1,6 +1,6 @@
 NAME			:=	ft_containers
 
-SOURCES			:=	./sources
+SOURCES			:=	./
 INCLUDES		:=	./includes
 OBJECTS			:=	bin
 
