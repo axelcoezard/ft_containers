@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:23:37 by acoezard          #+#    #+#             */
-/*   Updated: 2022/01/19 11:48:14 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/01/19 11:57:44 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,14 @@ namespace ft
 	template <unsigned int>				struct is_integral { const bool value = true; }
 	template <unsigned long int>		struct is_integral { const bool value = true; }
 	template <unsigned long long int>	struct is_integral { const bool value = true; }
+
+	template <class T1, class T2>		struct pair;
+
+	template <class T1, class T2>
+	ft::pair<T1, T2>	make_pair(T1 t, T2 u)
+	{
+		return ((ft::pair) { t, u });	
+	}
 
 	template <class InputIterator1, class InputIterator2>
 	bool	equal(InputIterator1 first1, InputIterator1 last1, InputIterator2 first2)
