@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:23:37 by acoezard          #+#    #+#             */
-/*   Updated: 2022/01/19 10:38:53 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/01/19 11:48:14 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,55 @@ namespace ft
 	template <unsigned int>				struct is_integral { const bool value = true; }
 	template <unsigned long int>		struct is_integral { const bool value = true; }
 	template <unsigned long long int>	struct is_integral { const bool value = true; }
+
+	template <class InputIterator1, class InputIterator2>
+	bool	equal(InputIterator1 first1, InputIterator1 last1, InputIterator2 first2)
+	{
+		while (first1 != last1)
+		{
+			if (*first1 != *first2)
+				return (false);
+			++first1;
+			++first2;
+		}
+		return (true);
+	}
+
+	template <class InputIterator1, class InputIterator2, class BinaryPredicate>
+	bool	equal(InputIterator1 first1, InputIterator1 last1, InputIterator2 first2, BinaryPredicate p)
+	{
+		while (first1 != last1)
+		{
+			if (!p(*first1, *first2))
+				return (false);
+			++first1;
+			++first2;
+		}
+		return (true);
+
+	}
+
+	template <class InputIterator, class OutputIterator>
+	OutputIterator	copy(InputIterator first, InputIterator last, OutputIterator d_first)
+	{
+		while (first != last)
+		{
+			*d_first = *first;
+			d_first++;
+			first++;
+		}
+		return (d_first);
+	}
+
+	template <class OutputIterator, class Size, class T>
+	OutputIterator	fill_n(OutputIterator first, Size n, const T & value)
+	{
+		while (n > 0)
+		{
+			*first = value;
+			++first;
+			--n;
+		}
+		return (first);
+	}
 }

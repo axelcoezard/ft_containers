@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 15:00:55 by acoezard          #+#    #+#             */
-/*   Updated: 2022/01/19 10:39:55 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/01/19 11:40:57 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
  */
 
 #pragma once
+
+#include "utils.hpp"
 
 namespace ft
 {
@@ -39,7 +41,6 @@ namespace ft
 
 		private:
 			size_type		_size;
-			size_type		_capacity;
 			pointer			_begin;
 			pointer			_end;
 			allocator_type	_alloc;
@@ -60,7 +61,7 @@ namespace ft
 				const allocator_type & alloc = allocator_type())
 			{
 				this->_alloc = alloc;
-				this->_alloc.allocate(count);
+				this->_pointer = this->_alloc.allocate(count);
 				for (int i = 0; i < count; i++)
 					this->push_back(new value_type(value));
 			}
@@ -81,7 +82,7 @@ namespace ft
 
 			~vector(void)
 			{
-			
+					
 			}
 
 			vector&	operator=(const vector & copy)
@@ -146,7 +147,9 @@ namespace ft
 			
 			const_reference	at(size_t index) const
 			{
-				return (this->operator[](index));
+				if (index > 0 && index < size)
+					return (this->operator[](index));
+				throw std::out_of_range();
 			}
 
 			reference	operator[](size_t index)
@@ -272,7 +275,7 @@ namespace ft
 
 			void	reserve(size_type new_cap)
 			{
-			
+				
 			}
 
 			size_type	capacity(void) const
@@ -280,9 +283,32 @@ namespace ft
 				return (this->_end - this->_begin);
 			}
 			
-			void resize(size_type count, value_type value = value_type())
+			void resize(size_type new_size, value_type value = value_type())
 			{
-			
+				size_type	old_size = this->size();
+				if (old_size > new_size)
+					this->size = new_size;
+				if (old_size < new_size)
+				{
+					iterator	iter;
+					size_type	old_cap = this->capacity();
+					size_type	diff = new_size - old_size;
+
+					if (diff <= old_cap && old_size <= old_cap - diff)
+					{
+						iter = end();
+						this->_size = old_size + diff; 
+					}
+					else
+					{
+						vector	vec(this->_alloc())
+						vec.reserve(old_size + diff);
+						vec._size = old_size + diff;
+						iter = ft::copy(this->_begin, this->_end, vec.begin());	
+						swap(vec);
+					}
+					ft::fill_n(iter, diff, value);
+				}
 			}
 
 			/* **********************************************
