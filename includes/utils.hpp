@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:23:37 by acoezard          #+#    #+#             */
-/*   Updated: 2022/01/20 16:13:42 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/01/20 16:45:41 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ namespace ft
 		public:
 			typedef T1	first_type;
 			typedef T2	second_type;
-		private:
+		public:
 			first_type	u;
 			second_type	v;
 		public:

@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 15:00:55 by acoezard          #+#    #+#             */
-/*   Updated: 2022/01/20 16:14:19 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/01/20 16:56:29 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ namespace ft
 			typedef typename allocator_type::const_pointer				const_pointer;
 			typedef typename allocator_type::size_type					size_type;
 			typedef typename allocator_type::difference_type			difference_type;
-			typedef typename std::reverse_iterator<std::iterator>		iterator;
-			typedef typename std::reverse_iterator<std::const_iterator>	const_iterator;
+			typedef std::iterator<T>									iterator;
+			typedef std::iterator<const T>								const_iterator;
+			typedef typename ft::reverse_iterator<iterator>				reverse_iterator;
+			typedef typename ft::reverse_iterator<const_iterator>		const_reverse_iterator;
 
 		private:
 			size_type		_size;
