@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 15:00:55 by acoezard          #+#    #+#             */
-/*   Updated: 2022/01/20 15:41:17 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/01/20 16:14:19 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #pragma once
 
 #include "utils.hpp"
+#include "iterator.hpp"
 
 namespace ft
 {

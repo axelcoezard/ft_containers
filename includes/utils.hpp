@@ -6,11 +6,15 @@
 /*   By: acoezard <acoezard@student.42nice.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:23:37 by acoezard          #+#    #+#             */
-/*   Updated: 2022/01/20 16:04:42 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/01/20 16:13:42 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+
+#include <cstddef>
+#include <memory>
+#include <stdexcept>
 
 namespace ft
 {
@@ -20,6 +24,9 @@ namespace ft
 	template <class T>	struct is_integral							{ static const bool value = false; };
 	template <>			struct is_integral <bool>					{ static const bool value = true; };
 	template <>			struct is_integral <char>					{ static const bool value = true; };
+	template <>			struct is_integral <char16_t>				{ static const bool value = true; };
+	template <>			struct is_integral <char32_t>				{ static const bool value = true; };
+	template <>			struct is_integral <wchar_t>				{ static const bool value = true; };
 	template <>			struct is_integral <signed char>			{ static const bool value = true; };
 	template <>			struct is_integral <short int>				{ static const bool value = true; };
 	template <>			struct is_integral <int>					{ static const bool value = true; };
