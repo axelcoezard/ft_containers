@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 15:00:55 by acoezard          #+#    #+#             */
-/*   Updated: 2022/01/20 16:56:29 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/02/01 14:18:57 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ namespace ft
 			typedef typename allocator_type::const_pointer				const_pointer;
 			typedef typename allocator_type::size_type					size_type;
 			typedef typename allocator_type::difference_type			difference_type;
-			typedef std::iterator<T>									iterator;
-			typedef std::iterator<const T>								const_iterator;
+			typedef typename ft::iterator<value_type>					iterator;
+			typedef typename ft::iterator<const value_type>				const_iterator;
 			typedef typename ft::reverse_iterator<iterator>				reverse_iterator;
 			typedef typename ft::reverse_iterator<const_iterator>		const_reverse_iterator;
 
-		private:
+		protected:
 			size_type		_size;
 			pointer			_begin;
 			pointer			_end;
@@ -93,66 +93,58 @@ namespace ft
 			
 			}
 
-			/* **********************************************
-			 * ITERATORS
-			 * *********************************************/
-			
 			iterator	begin(void)
 			{
-			
+				return (iterator(this->begin, this));	
 			}
 
 			const_iterator	begin(void) const
 			{
-			
+				return (const_iterator(this->begin, this));	
 			}
 
 			iterator	end(void)
 			{
-			
+				return (iterator(this->end, this));	
 			}
 
 			const_iterator	end(void) const
 			{
-			
+				return (const_iterator(this->end, this));	
 			}
 
 			reverse_iterator	rbegin(void)
 			{
-			
+				return (reverse_iterator(this->end()));	
 			}
 
 			const_reverse_iterator	rbegin(void) const
 			{
-			
+				return (const_reverse_iterator(this->end()));	
 			}
 
 			reverse_iterator	rend(void)
 			{
-				
+				return (reverse_iterator(this->begin()));	
 			}
 			
 			const_reverse_iterator	rend(void) const
 			{
-			
+				return (const_reverse_iterator(this->begin()));	
 			}
-
-			/* **********************************************
-			 * ELEMENT ACCESS
-			 * *********************************************/
 
 			reference	at(size_t index)
 			{
-				if (index > 0 && index < size)
+				if (index > 0 && index < this->size)
 					return (this->operator[](index));
-				throw std::out_of_range();
+				throw (std::out_of_range("vector::at"));
 			}
 			
 			const_reference	at(size_t index) const
 			{
-				if (index > 0 && index < size)
+				if (index > 0 && index < this->size)
 					return (this->operator[](index));
-				throw std::out_of_range();
+				throw (std::out_of_range("vector::at"));
 			}
 
 			reference	operator[](size_t index)
@@ -195,10 +187,6 @@ namespace ft
 			{
 				return (this->_begin);	
 			}
-
-			/* **********************************************
-			 * MODIFIERS
-			 * *********************************************/
 
 			void	assign(size_type count, const value_type& value)
 			{
@@ -249,21 +237,23 @@ namespace ft
 
 			void	swap(vector & x)
 			{
-			
+				if (x == *this)
+					return ;
+				
+				ft::swap(this->size, x.size);
+				ft::swap(this->begin, x.begin);
+				ft::swap(this->end, x.end);
+				ft::swap(this->alloc, x.alloc);
 			}
 
 			void	clear(void)
 			{
-			
+				
 			}
-
-			/* **********************************************
-			 * CAPACITY
-			 * *********************************************/
 
 			bool	empty(void) const
 			{
-			
+				return (this->_size == 0)	
 			}
 
 			size_type	size(void) const
@@ -278,7 +268,7 @@ namespace ft
 
 			void	reserve(size_type new_cap)
 			{
-				
+					
 			}
 
 			size_type	capacity(void) const
@@ -314,10 +304,6 @@ namespace ft
 				}
 			}
 
-			/* **********************************************
-			 * ALLOCATORS
-			 * *********************************************/
-		
 			allocator_type	get_allocator() const
 			{
 				return (this->_alloc);
@@ -339,30 +325,30 @@ namespace ft
 	template <class T, class Alloc>
 	bool operator<(const vector<T, Alloc> & lhs, const vector<T, Alloc> & rhs)
 	{
-			
+		return (ft::lexiographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));	
 	}
 
 	template <class T, class Alloc>
 	bool operator<=(const vector<T, Alloc> & lhs, const vector<T, Alloc> & rhs)
 	{
-	
+		return !(rhs < lhs);
 	}
 
 	template <class T, class Alloc>
 	bool operator>(const vector<T, Alloc> & lhs, const vector<T, Alloc> & rhs)
 	{
-	
+		return (rhs < lhs);
 	}
 
 	template <class T, class Alloc>
 	bool operator>=(const vector<T, Alloc> & lhs, const vector<T, Alloc> & rhs)
 	{
-	
+		return !(lhs < rhs);
 	}
 
 	template <class T, class Alloc>
 	void	swap(vector<T, Alloc> & x, vector<T, Alloc> & y)
 	{
-	
+		x.swqp(y);
 	}
 }

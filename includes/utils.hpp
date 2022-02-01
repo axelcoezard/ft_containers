@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:23:37 by acoezard          #+#    #+#             */
-/*   Updated: 2022/01/20 16:45:41 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/02/01 11:48:32 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ namespace ft
 	template <class T1, class T2>
 	ft::pair<T1, T2>	make_pair(T1 u, T2 v)
 	{
-		return (pair<T1, T2>(u, v));	
+		ft::pair<T1, T2>	npair(u, v);
+		return (npair);	
 	}
 
 	template <class InputIterator1, class InputIterator2>
@@ -132,5 +133,13 @@ namespace ft
 			--n;
 		}
 		return (first);
+	}
+
+	template<class T>
+	void	swap(T & a, T & b)
+	{
+		T	tmp(a);
+		a = b;
+		b = tmp;
 	}
 }
