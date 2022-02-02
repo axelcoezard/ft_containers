@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 15:00:55 by acoezard          #+#    #+#             */
-/*   Updated: 2022/02/01 14:18:57 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/02/02 10:54:30 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,26 @@
 
 #include "utils.hpp"
 #include "iterator.hpp"
+#include <iterator>
 
 namespace ft
 {
-	template <class T, class Allocator = std::allocator<T>>
+	template <class T, class Allocator = std::allocator<T> >
 	class vector
 	{
 		public:
-			typedef T													value_type;
-			typedef Allocator											allocator_type;
-			typedef typename allocator_type::reference					reference;
-			typedef typename allocator_type::const_reference			const_reference;
-			typedef typename allocator_type::pointer					pointer;
-			typedef typename allocator_type::const_pointer				const_pointer;
-			typedef typename allocator_type::size_type					size_type;
-			typedef typename allocator_type::difference_type			difference_type;
-			typedef typename ft::iterator<value_type>					iterator;
-			typedef typename ft::iterator<const value_type>				const_iterator;
-			typedef typename ft::reverse_iterator<iterator>				reverse_iterator;
-			typedef typename ft::reverse_iterator<const_iterator>		const_reverse_iterator;
+			typedef T														value_type;
+			typedef Allocator												allocator_type;
+			typedef typename allocator_type::reference						reference;
+			typedef typename allocator_type::const_reference				const_reference;
+			typedef typename allocator_type::pointer						pointer;
+			typedef typename allocator_type::const_pointer					const_pointer;
+			typedef typename allocator_type::size_type						size_type;
+			typedef typename allocator_type::difference_type				difference_type;
+			typedef typename ft::random_access_iterator<value_type>			iterator;
+			typedef typename ft::random_access_iterator<const value_type>	const_iterator;
+			typedef typename ft::reverse_iterator<iterator>					reverse_iterator;
+			typedef typename ft::reverse_iterator<const_iterator>			const_reverse_iterator;
 
 		protected:
 			size_type		_size;
@@ -59,9 +60,7 @@ namespace ft
 			
 			}
 
-			explicit vector (size_type count,
-				const value_type & value = value_type(), 
-				const allocator_type & alloc = allocator_type())
+			explicit vector (size_type count, const value_type & value = value_type(), const allocator_type & alloc = allocator_type())
 			{
 				this->_alloc = alloc;
 				this->_pointer = this->_alloc.allocate(count);
@@ -70,8 +69,7 @@ namespace ft
 			}
 			
 			template<class InputIterator>
-			vector(InputIterator first, InputIterator last,
-				const allocator_type & alloc = allocator_type())
+			vector(InputIterator first, InputIterator last, const allocator_type & alloc = allocator_type())
 			{
 				this->_begin = first;
 				this->_end = last;
@@ -80,7 +78,7 @@ namespace ft
 
 			vector(const vector & copy)
 			{
-					
+			
 			}
 
 			~vector(void)
@@ -190,7 +188,7 @@ namespace ft
 
 			void	assign(size_type count, const value_type& value)
 			{
-
+			
 			}
 
 			template<class InputIterator>
@@ -214,7 +212,7 @@ namespace ft
 			
 			}
 
-			void	insert(iterator position, size_type count, const value_type& value)
+			void	insert(iterator position, size_type count, const value_type & value)
 			{
 			
 			}
@@ -253,7 +251,7 @@ namespace ft
 
 			bool	empty(void) const
 			{
-				return (this->_size == 0)	
+				return (this->_size == 0);	
 			}
 
 			size_type	size(void) const
@@ -294,7 +292,7 @@ namespace ft
 					}
 					else
 					{
-						vector	vec(this->_alloc())
+						vector	vec(this->_alloc());
 						vec.reserve(old_size + diff);
 						vec._size = old_size + diff;
 						iter = ft::copy(this->_begin, this->_end, vec.begin());	
@@ -325,7 +323,7 @@ namespace ft
 	template <class T, class Alloc>
 	bool operator<(const vector<T, Alloc> & lhs, const vector<T, Alloc> & rhs)
 	{
-		return (ft::lexiographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));	
+		return (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));	
 	}
 
 	template <class T, class Alloc>
