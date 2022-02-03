@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 13:41:05 by acoezard          #+#    #+#             */
-/*   Updated: 2022/02/03 12:34:06 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/02/03 13:11:39 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #define ITERATOR_HPP
 
 #include "utils.hpp"
-
-// Iterator tags: https://en.cppreference.com/w/cpp/iterator/iterator_tags
 
 namespace ft
 {
@@ -28,8 +26,6 @@ namespace ft
 	class bidirectional_iterator_tag : public forward_iterator_tag { };
 
 	class random_access_iterator_tag : public bidirectional_iterator_tag { };
-
-	class contiguous_iterator_tag : public random_access_iterator_tag { };
 
 	template <typename Iterator>
 	struct iterator_traits
@@ -342,7 +338,7 @@ namespace ft
 	}
 
 	template <class Iterator1, class Iterator2>
-	bool operator>(const reverse_iterator<Iterator1>& lhs, const reverse_iterator<Iterator2>& rhs)
+	bool	operator>(const reverse_iterator<Iterator1>& lhs, const reverse_iterator<Iterator2>& rhs)
 	{
 		return (lhs.base() > rhs.base());
 	}
@@ -373,7 +369,7 @@ namespace ft
 	}
 
 	template <class InputIterator>
-	typename iterator_traits<InputIterator>::difference_type	distance(InputIterator first, InputIterator last)
+	typename iterator_traits<InputIterator>::difference_type distance(InputIterator first, InputIterator last)
 	{
 		typename iterator_traits<InputIterator>::difference_type count = 0;
 		while (first != last)
