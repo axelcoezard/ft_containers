@@ -6,11 +6,12 @@
 /*   By: acoezard <acoezard@student.42nice.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:23:37 by acoezard          #+#    #+#             */
-/*   Updated: 2022/02/03 12:33:08 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/02/03 12:35:34 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#ifndef UTILS_HPP
+#define UTILS_HPP
 
 #include <cstddef>
 #include <memory>
@@ -143,3 +144,5 @@ namespace ft
 		b = tmp;
 	}
 }
+
+#endif

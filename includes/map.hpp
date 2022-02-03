@@ -6,8 +6,11 @@
 /*   By: acoezard <acoezard@student.42nice.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 13:45:22 by acoezard          #+#    #+#             */
-/*   Updated: 2022/01/18 13:45:23 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/02/03 12:36:22 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef MAP_HPP
+#define MAP_HPP
 
+#endif

@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 13:41:05 by acoezard          #+#    #+#             */
-/*   Updated: 2022/02/03 12:32:16 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/02/03 12:34:06 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,7 +211,7 @@ namespace ft
 
 	template<typename T>
 	random_access_iterator<T>
-	operator+(typename random_access_iterator<T>::difference_type n, typename random_access_iterator<T>& ra_it)
+	operator+(typename random_access_iterator<T>::difference_type n, typename ft::random_access_iterator<T>& ra_it)
 	{
 		return (&(*ra_it) + n);
 	}
