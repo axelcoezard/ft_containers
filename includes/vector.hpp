@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 15:00:55 by acoezard          #+#    #+#             */
-/*   Updated: 2022/02/03 10:19:41 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/02/03 11:47:25 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
  * https://opensource.apple.com/source/libcpp/libcpp-31/include/vector.auto.html
  */
 
-#pragma once
+#ifndef VECTOR_HPP
+#define VECTOR_HPP
 
 #include "utils.hpp"
 #include "iterator.hpp"
@@ -43,10 +44,10 @@ namespace ft
 			typedef typename allocator_type::difference_type				difference_type;
 
 		protected:
+			allocator_type	_alloc;
 			pointer			_begin;
 			pointer			_end;
 			pointer			_end_capacity;
-			allocator_type	_alloc;
 
 		public:
 			explicit vector(const allocator_type& alloc = allocator_type())
@@ -70,7 +71,7 @@ namespace ft
 			vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type())
 				: _alloc(alloc),
 				_begin(nullptr),
-				_end(nullptr),
+				_end(nullptr), 
 				_end_capacity(nullptr)
 			{
 				difference_type count = ft::distance(first, last);
@@ -387,3 +388,5 @@ namespace ft
 		x.swqp(y);
 	}
 }
+
+#endif
