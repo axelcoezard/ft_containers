@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 15:00:55 by acoezard          #+#    #+#             */
-/*   Updated: 2022/02/03 13:07:22 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/02/07 11:30:26 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,15 @@ namespace ft
 				: _alloc(alloc), _begin(nullptr), _end(nullptr), _end_capacity(nullptr)
 			{
 				_begin = _alloc.allocate(count);
-				_end = _begin;
 				_end_capacity = _begin + count;
-				while (count)
-				{
+				_end = _begin;
+				while (count--)
 					_alloc.construct(_end++, value);	
-					count--;
-				}
 			}
 			
 			template<class InputIterator>
-			vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type())
+			vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(),
+				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr)
 				: _alloc(alloc),
 				_begin(nullptr),
 				_end(nullptr), 
@@ -78,11 +76,8 @@ namespace ft
 				_begin = _alloc.allocate(count);
 				_end = _begin;
 				_end_capacity = _begin + count;
-				while (count)
-				{
+				while (count--)
 					_alloc.construct(_end++, *first++);	
-					count--;
-				}
 			}
 
 			vector(const vector& copy)
@@ -217,8 +212,8 @@ namespace ft
 					_end = _begin;
 					_end_capacity = _begin + count;
 				}
-				while (count)
-					_alloc.construct(_end++, value), count--;
+				while (count--)
+					_alloc.construct(_end++, value);
 			}
 
 			template<class InputIterator>
