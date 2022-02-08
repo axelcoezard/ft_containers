@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 15:00:55 by acoezard          #+#    #+#             */
-/*   Updated: 2022/02/08 12:51:07 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/02/08 13:25:03 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,14 +147,14 @@ namespace ft
 
 			reference	at(size_t index)
 			{
-				if (index > 0 && index < this->size())
+				if (index < this->size())
 					return (this->operator[](index));
 				throw (std::out_of_range("vector::at"));
 			}
 
 			const_reference	at(size_t index) const
 			{
-				if (index > 0 && index < this->size())
+				if (index < this->size())
 					return (this->operator[](index));
 				throw (std::out_of_range("vector::at"));
 			}
@@ -178,7 +178,6 @@ namespace ft
 			{
 				return *(_begin);
 			}
-
 
 			reference	back(void)
 			{
