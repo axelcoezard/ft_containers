@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoezard <acoezard@student.42nice.f>       +#+  +:+       +#+        */
+/*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 15:00:55 by acoezard          #+#    #+#             */
-/*   Updated: 2022/02/07 11:30:26 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/02/08 12:51:07 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,15 @@ namespace ft
 				_end_capacity = _begin + count;
 				_end = _begin;
 				while (count--)
-					_alloc.construct(_end++, value);	
+					_alloc.construct(_end++, value);
 			}
-			
+
 			template<class InputIterator>
 			vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(),
 				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr)
 				: _alloc(alloc),
 				_begin(nullptr),
-				_end(nullptr), 
+				_end(nullptr),
 				_end_capacity(nullptr)
 			{
 				difference_type count = ft::distance(first, last);
@@ -77,7 +77,7 @@ namespace ft
 				_end = _begin;
 				_end_capacity = _begin + count;
 				while (count--)
-					_alloc.construct(_end++, *first++);	
+					_alloc.construct(_end++, *first++);
 			}
 
 			vector(const vector& copy)
@@ -91,58 +91,58 @@ namespace ft
 
 			~vector(void)
 			{
-				this->clear();	
+				this->clear();
 				_alloc.deallocate(_begin, this->capacity());
 			}
 
 			vector&	operator=(const vector& copy)
 			{
-				(void) copy;	
+				(void) copy;
 				return (*this);
 			}
 
 			iterator	begin(void)
 			{
-				return (iterator(_begin));	
+				return (iterator(_begin));
 			}
 
 			const_iterator	begin(void) const
 			{
-				return (const_iterator(_begin));	
+				return (const_iterator(_begin));
 			}
 
 			iterator	end(void)
 			{
 				if (this->empty())
 					return (this->begin());
-				return (iterator(_end));	
+				return (iterator(_end));
 			}
 
 			const_iterator	end(void) const
 			{
 				if (this->empty())
 					return (this->begin());
-				return (const_iterator(_end));	
+				return (const_iterator(_end));
 			}
 
 			reverse_iterator	rbegin(void)
 			{
-				return (reverse_iterator(this->end()));	
+				return (reverse_iterator(this->end()));
 			}
 
 			const_reverse_iterator	rbegin(void) const
 			{
-				return (const_reverse_iterator(this->end()));	
+				return (const_reverse_iterator(this->end()));
 			}
 
 			reverse_iterator	rend(void)
 			{
-				return (reverse_iterator(this->begin()));	
+				return (reverse_iterator(this->begin()));
 			}
-			
+
 			const_reverse_iterator	rend(void) const
 			{
-				return (const_reverse_iterator(this->begin()));	
+				return (const_reverse_iterator(this->begin()));
 			}
 
 			reference	at(size_t index)
@@ -151,7 +151,7 @@ namespace ft
 					return (this->operator[](index));
 				throw (std::out_of_range("vector::at"));
 			}
-			
+
 			const_reference	at(size_t index) const
 			{
 				if (index > 0 && index < this->size())
@@ -161,12 +161,12 @@ namespace ft
 
 			reference	operator[](size_t index)
 			{
-				return *(_begin + index);	
+				return *(_begin + index);
 			}
 
 			const_reference	operator[](size_t index) const
 			{
-				return *(_begin + index);	
+				return *(_begin + index);
 			}
 
 			reference	front(void)
@@ -192,12 +192,12 @@ namespace ft
 
 			value_type*	data(void)
 			{
-				return (_begin);	
+				return (_begin);
 			}
 
 			const value_type*	data(void) const
 			{
-				return (_begin);	
+				return (_begin);
 			}
 
 			void	assign(size_type count, const value_type& value)
@@ -222,10 +222,10 @@ namespace ft
 				(void) first;
 				(void) last;
 			}
-			
+
 			void	push_back(const value_type& value)
 			{
-				(void) value;	
+				(void) value;
 			}
 
 			void	pop_back(void)
@@ -254,7 +254,7 @@ namespace ft
 				(void) first;
 				(void) last;
 			}
-			
+
 			iterator	erase(iterator position)
 			{
 				(void) position;
@@ -270,7 +270,7 @@ namespace ft
 			{
 				if (x == *this)
 					return ;
-				
+
 				ft::swap(_begin, x._begin);
 				ft::swap(_end, x._end);
 				ft::swap(_end_capacity, x._end_capacity);
@@ -289,12 +289,12 @@ namespace ft
 
 			size_type	size(void) const
 			{
-				return (_end - _begin);	
+				return (_end - _begin);
 			}
 
 			bool	empty(void) const
 			{
-				return (this->size() == 0);	
+				return (this->size() == 0);
 			}
 
 			size_type	max_size(void) const
@@ -304,14 +304,14 @@ namespace ft
 
 			void	reserve(size_type new_cap)
 			{
-				(void) new_cap;	
+				(void) new_cap;
 			}
 
 			size_type	capacity(void) const
 			{
 				return (_end_capacity - _begin);
 			}
-			
+
 			void resize(size_type new_size, value_type value = value_type())
 			{
 				size_type	old_size = this->size();
@@ -333,8 +333,8 @@ namespace ft
 						vector	vec(_alloc);
 						vec.reserve(old_size + diff);
 						vec._end = vec._begin + old_size + diff;
-						iter = ft::copy(_begin, _end_capacity, vec.begin());	
-						swap(vec);
+						iter = ft::copy(_begin, _end_capacity, vec.begin());
+						this->swap(vec);
 					}
 					ft::fill_n(iter, diff, value);
 				}
@@ -344,7 +344,7 @@ namespace ft
 			{
 				return (_alloc);
 			}
-	}; 
+	};
 
 	template<class T, class Alloc>
 	bool operator==(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs)
@@ -355,13 +355,13 @@ namespace ft
 	template <class T, class Alloc>
 	bool operator!=(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs)
 	{
-		return !(lhs == rhs);	
+		return !(lhs == rhs);
 	}
 
 	template <class T, class Alloc>
 	bool operator<(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs)
 	{
-		return (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));	
+		return (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
 	}
 
 	template <class T, class Alloc>
@@ -385,7 +385,7 @@ namespace ft
 	template <class T, class Alloc>
 	void	swap(vector<T, Alloc>& x, vector<T, Alloc>& y)
 	{
-		x.swqp(y);
+		x.swap(y);
 	}
 }
 
