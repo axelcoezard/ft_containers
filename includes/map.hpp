@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 13:45:22 by acoezard          #+#    #+#             */
-/*   Updated: 2022/02/11 05:55:53 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/02/11 06:07:06 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ namespace ft
 			typedef Allocator					allocator_type;
 			typedef Allocator::pointer			pointer;
 			typedef Allocator::const_pointer	const_pointer;
-			// TO-DO: Ajouter les iterator (const) et reverse_iterator (const) du RBTree
+			// TODO: Ajouter les iterator (const) et reverse_iterator (const) du RBTree
 
 			class value_compare
 			{
@@ -129,7 +129,7 @@ namespace ft
 				void clear(void)
 				{}
 
-				std::pair<iterator, bool> insert(const value_type& value)
+				ft::pair<iterator, bool> insert(const value_type& value)
 				{}
 
 				iterator insert(iterator hint, const value_type& value)
@@ -153,10 +153,10 @@ namespace ft
 				const_iterator find(const key_type& key) const
 				{}
 
-				std::pair<iterator, iterator> equal_range(const key_type& key)
+				ft::pair<iterator, iterator> equal_range(const key_type& key)
 				{}
 
-				std::pair<const_iterator, const_iterator> equal_range(const key_type& key) const
+				ft::pair<const_iterator, const_iterator> equal_range(const key_type& key) const
 				{}
 
 				iterator lower_bound(const key_type& key)
@@ -178,5 +178,33 @@ namespace ft
 				allocator_type get_allocator(void) const { return (_alloc); }
 	};
 }
+
+template <class Key, class T, class Compare, class Alloc>
+bool operator==(const ft::map<Key, T, Compare, Alloc>& lhs, const ft::map<Key, T, Compare, Alloc>& rhs)
+{}
+
+template <class Key, class T, class Compare, class Alloc>
+bool operator!=(const ft::map<Key, T, Compare, Alloc>& lhs, const ft::map<Key, T, Compare, Alloc>& rhs)
+{}
+
+template <class Key, class T, class Compare, class Alloc>
+bool operator<(const ft::map<Key, T, Compare, Alloc>& lhs, const ft::map<Key, T, Compare, Alloc>& rhs)
+{}
+
+template <class Key, class T, class Compare, class Alloc>
+bool operator>(const ft::map<Key, T, Compare, Alloc>& lhs, const ft::map<Key, T, Compare, Alloc>& rhs)
+{}
+
+template <class Key, class T, class Compare, class Alloc>
+bool operator<=(const ft::map<Key, T, Compare, Alloc>& lhs, const ft::map<Key, T, Compare, Alloc>& rhs)
+{}
+
+template <class Key, class T, class Compare, class Alloc>
+bool operator>=(const ft::map<Key, T, Compare, Alloc>& lhs, const ft::map<Key, T, Compare, Alloc>& rhs)
+{}
+
+template <class Key, class T, class Compare, class Alloc>
+void swap(ft::map<Key, T, Compare, Alloc>& lhs, ft::map<Key, T, Compare, Alloc>& rhs)
+{}
 
 #endif
