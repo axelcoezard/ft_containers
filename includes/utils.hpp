@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoezard <acoezard@student.42nice.f>       +#+  +:+       +#+        */
+/*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:23:37 by acoezard          #+#    #+#             */
-/*   Updated: 2022/02/03 12:35:34 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/02/11 04:47:18 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,27 +38,6 @@ namespace ft
 	template <>			struct is_integral <unsigned int>			{ static const bool value = true; };
 	template <>			struct is_integral <unsigned long int>		{ static const bool value = true; };
 	template <>			struct is_integral <unsigned long long int>	{ static const bool value = true; };
-
-	template <class T1, class T2>
-	struct pair 
-	{
-		public:
-			typedef T1	first_type;
-			typedef T2	second_type;
-		public:
-			first_type	u;
-			second_type	v;
-		public:
-			pair(first_type & u, second_type & v) : u(u), v(v) {};
-			~pair(void) {};
-	};
-
-	template <class T1, class T2>
-	pair<T1, T2>	make_pair(T1 u, T2 v)
-	{
-		pair<T1, T2>	npair(u, v);
-		return (npair);	
-	}
 
 	template <class InputIterator1, class InputIterator2>
 	bool	equal(InputIterator1 first1, InputIterator1 last1, InputIterator2 first2)
