@@ -23,7 +23,33 @@ namespace ft
 			~pair(void) {};
 	};
 
-	// TODO: Ajouter tous les overload mon-membres d'operateurs
+	template <class T1, class T2>
+	bool operator==(const pair<T1, T2> lhs, const pair<T1, T2> rhs)
+	{
+		return (lhs.first == rhs.first && lhs.second == rhs.second);
+	}
+
+	template <class T1, class T2>
+	bool operator!=(const pair<T1, T2> lhs, const pair<T1, T2> rhs)
+	{
+		return !(lhs == rhs);
+	}
+
+	template <class T1, class T2>
+	bool operator<(const pair<T1, T2> lhs, const pair<T1, T2> rhs)
+	{}
+
+	template <class T1, class T2>
+	bool operator>(const pair<T1, T2> lhs, const pair<T1, T2> rhs)
+	{}
+
+	template <class T1, class T2>
+	bool operator<=(const pair<T1, T2> lhs, const pair<T1, T2> rhs)
+	{}
+
+	template <class T1, class T2>
+	bool operator>=(const pair<T1, T2> lhs, const pair<T1, T2> rhs)
+	{}
 
 	template <class T1, class T2>
 	pair<T1, T2> make_pair(T1 u, T2 v)
