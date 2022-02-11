@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 13:45:20 by acoezard          #+#    #+#             */
-/*   Updated: 2022/02/11 05:07:37 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/02/11 06:18:54 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,35 @@ namespace ft
 				return (*this);
 			}
 
-			reference top(void) { return (this->_c.back()) }
+			reference top(void)
+			{
+				return (this->_c.back())
+			}
 
-			const_reference top(void) const { return (this->_c.back()); }
+			const_reference top(void) const
+			{
+				return (this->_c.back());
+			}
 
-			bool empty(void) const { return (this->_c.empty()); }
+			bool empty(void) const
+			{
+				return (this->_c.empty());
+			}
 
-			size_type size(void) const { return (this->_c.size()); }
+			size_type size(void) const
+			{
+				return (this->_c.size());
+			}
 
-			void push(const value_type& value) { this->_c.push_back(); }
+			void push(const value_type& value)
+			{
+				this->_c.push_back();
+			}
 
-			void pop(void) { this->_c.pop_back(); };
+			void pop(void)
+			{
+				this->_c.pop_back();
+			};
 	};
 }
 

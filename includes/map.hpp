@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 13:45:22 by acoezard          #+#    #+#             */
-/*   Updated: 2022/02/11 06:09:38 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/02/11 06:19:34 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,11 +171,20 @@ namespace ft
 				const_iterator upper_bound(const key_type& key) const
 				{}
 
-				key_compare key_comp(void) const { return (_keyComp); }
+				key_compare key_comp(void) const
+				{
+					return (_keyComp);
+				}
 
-				value_compare value_comp() const { return (_valueComp); }
+				value_compare value_comp() const
+				{
+					return (_valueComp);
+					}
 
-				allocator_type get_allocator(void) const { return (_alloc); }
+				allocator_type get_allocator(void) const
+				{
+					return (_alloc);
+				}
 	};
 }
 
