@@ -4,7 +4,7 @@
 namespace ft
 {
 	template <typename value_type>
-	struct tree_node
+	class tree_node
 	{
 		value_type			value;
 
