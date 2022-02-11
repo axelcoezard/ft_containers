@@ -9,19 +9,26 @@ namespace ft
 		public:
 			typedef T1	first_type;
 			typedef T2	second_type;
-		public:
-			first_type	u;
-			second_type	v;
-		public:
-			pair(first_type & u, second_type & v) : u(u), v(v) {};
+
+			first_type	first;
+			second_type	second;
+
+			pair(void) {}
+
+			pair(const first_type& u, const second_type& v) : first(u), second(v) {};
+
+			template <class T1, class T2>
+			pair(const pair<T1, T2>& pair) : first(pair.first), second(pair.second) {}
+
 			~pair(void) {};
 	};
 
+	// TODO: Ajouter tous les overload mon-membres d'operateurs
+
 	template <class T1, class T2>
-	pair<T1, T2>	make_pair(T1 u, T2 v)
+	pair<T1, T2> make_pair(T1 u, T2 v)
 	{
-		pair<T1, T2>	npair(u, v);
-		return (npair);
+		return (pair<T1, T2>(u, v));
 	}
 }
 
