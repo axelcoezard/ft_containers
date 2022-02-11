@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 13:45:22 by acoezard          #+#    #+#             */
-/*   Updated: 2022/02/11 06:19:34 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/02/11 06:50:58 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,17 @@ namespace ft
 	class map
 	{
 		public:
-			typedef Key							key_type;
-			typedef T							mapped_type;
-			typedef ft::pair<const Key, T>		value_type;
-			typedef std::size_t					size_type;
-			typedef std::ptrdiff_t				difference_type;
-			typedef Compare						key_compare;
-			typedef value_type&					reference;
-			typedef const value_type&			const_reference;
-			typedef Allocator					allocator_type;
-			typedef Allocator::pointer			pointer;
-			typedef Allocator::const_pointer	const_pointer;
+			typedef Key								key_type;
+			typedef T								mapped_type;
+			typedef ft::pair<const Key, T>			value_type;
+			typedef std::size_t						size_type;
+			typedef std::ptrdiff_t					difference_type;
+			typedef Compare							key_compare;
+			typedef value_type&						reference;
+			typedef const value_type&				const_reference;
+			typedef Allocator						allocator_type;
+			typedef allocator_type::pointer			pointer;
+			typedef allocator_type::const_pointer	const_pointer;
 			// TODO: #17 Ajouter les iterator (const) et reverse_iterator (const) du RBTree
 
 			class value_compare

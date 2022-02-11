@@ -9,7 +9,7 @@ SRCS			:=	main.cpp
 OBJS			:=	$(addprefix ${OBJECTS}/, $(SRCS:.cpp=.o))
 
 CC				:=	clang++
-CFLAGS			:=	-Wall -Wextra -Werror -std=c++98 -fsanitize=address -DSTD=1
+CFLAGS			:=	-Wall -Wextra -Werror -std=c++98 -DSTD=1
 CINCLUDES		:=	-I ${INCLUDES}
 
 GREEN			:=	"\033[1;32m"

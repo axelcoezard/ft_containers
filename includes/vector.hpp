@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 15:00:55 by acoezard          #+#    #+#             */
-/*   Updated: 2022/02/08 13:25:03 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/02/11 06:48:37 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ namespace ft
 			typedef typename allocator_type::pointer						pointer;
 			typedef typename allocator_type::const_pointer					const_pointer;
 			typedef typename allocator_type::size_type						size_type;
+			typedef typename allocator_type::difference_type				difference_type;
 			typedef typename ft::random_access_iterator<value_type>			iterator;
 			typedef typename ft::random_access_iterator<const value_type>	const_iterator;
 			typedef typename ft::reverse_iterator<iterator>					reverse_iterator;
 			typedef typename ft::reverse_iterator<const_iterator>			const_reverse_iterator;
-			typedef typename allocator_type::difference_type				difference_type;
 
 		protected:
 			allocator_type	_alloc;
