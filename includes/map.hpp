@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 13:45:22 by acoezard          #+#    #+#             */
-/*   Updated: 2022/02/11 06:07:06 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/02/11 06:09:38 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ namespace ft
 			typedef Allocator					allocator_type;
 			typedef Allocator::pointer			pointer;
 			typedef Allocator::const_pointer	const_pointer;
-			// TODO: Ajouter les iterator (const) et reverse_iterator (const) du RBTree
+			// TODO: #17 Ajouter les iterator (const) et reverse_iterator (const) du RBTree
 
 			class value_compare
 			{
@@ -67,7 +67,7 @@ namespace ft
 					: _alloc(alloc), _keyComp(comp)
 				{
 					_valueComp = value_compare();
-					// TO-DO: Utiliser les iterator first et last
+					// TODO: #16 Utiliser les iterator first et last
 				}
 
 				map(const map& copy)
