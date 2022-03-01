@@ -1,40 +1,59 @@
-NAME			:=	ft_containers
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/03/01 10:40:18 by acoezard          #+#    #+#              #
+#    Updated: 2022/03/01 10:43:07 by acoezard         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-SOURCES			:=	./
-INCLUDES		:=	./includes
-OBJECTS			:=	bin
+NAME	:=	ft_containers
+ARCH	:=	x64
 
-SRCS			:=	main.cpp
+# -----------------------------------------------------------------------------
+# COMPILATION
+# -----------------------------------------------------------------------------
+SRCS	:=	main.cpp
+OBJS	:=	$(addprefix bin/, $(SRCS:.cpp=.o))
 
-OBJS			:=	$(addprefix ${OBJECTS}/, $(SRCS:.cpp=.o))
+CC		:=	clang++
+CFLAGS	:=	-Wall -Wextra -Werror -std=c++98
 
-CC				:=	clang++
-CFLAGS			:=	-Wall -Wextra -Werror -std=c++98 -DSTD=1
-CINCLUDES		:=	-I ${INCLUDES}
+# -----------------------------------------------------------------------------
+# COLORS
+# -----------------------------------------------------------------------------
+__RED		:=	"\033[1;31m"
+__GREEN		:=	"\033[1;32m"
+__YELLOW	:=	"\033[1;33m"
+__BLUE		:=	"\033[1;36m"
+__WHITE		:=	"\033[1;37m"
+__EOC		:=	"\033[0;0m"
 
-GREEN			:=	"\033[1;32m"
-BLUE			:=	"\033[1;36m"
-EOC				:=	"\033[0m"
-
-${OBJECTS}/%.o: ${SOURCES}/%.cpp
-	@mkdir -p $(dir $@)
-	@echo "● Compilation de "${BLUE}"${notdir $<}"${EOC}"."
-	@${CC} ${CFLAGS} -o $@ -c $< ${CINCLUDES}
+# -----------------------------------------------------------------------------
+# RULES
+# -----------------------------------------------------------------------------
+bin/%.o: %.cpp
+	@mkdir -p ${dir $@}
+	@${CC} ${CFLAGS} -o $@ -c $< -I includes
+	@echo ${__GREEN}"Compiling "${__WHITE}$<${__EOC}
 
 all: ${NAME}
 
 ${NAME}: ${OBJS}
-	@echo $(GREEN)"● Compilation de ${NAME}..."$(EOC)
-	@${CC} ${CFLAGS} -o ${NAME} ${OBJS}
+	@${CC} ${CFLAGS} ${OBJS} -o ${NAME}
+	@echo ${__GREEN}"Finished "${__WHITE}${NAME}" v"${VERSION}" bin target"${__EOC}
 
 clean:
-	@echo $(GREEN)"● Suppression des fichiers binaires (.o)..."$(EOC)
-	@rm -rf ${OBJECTS}
+	@rm -rf bin/
 
 fclean: clean
-	@echo ${GREEN}"● Supression des executables et librairies..."$(EOC)
-	@rm -f ${NAME}
+	@rm -rf ${NAME}
+	@echo ${__BLUE}"Cleaned "${__WHITE}"bin target(s)"${__EOC}
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all fclean clean re
+
