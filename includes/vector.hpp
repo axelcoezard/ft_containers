@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 15:00:55 by acoezard          #+#    #+#             */
-/*   Updated: 2022/03/01 18:26:20 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/03/01 18:26:41 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,7 +234,7 @@ namespace ft
 					size_type	tmp_cap = _capacity * 2;
 					if (!_capacity) tmp_cap = 1;
 					if (tmp_cap > this->max_size()) throw std::exception();
-					// TODO: duplicate alloc
+					// TODO: #19 duplicate alloc
 				}
 				_alloc.construct(_end, value);
 				_end++;
