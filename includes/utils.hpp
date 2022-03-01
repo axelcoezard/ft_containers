@@ -6,13 +6,14 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:23:37 by acoezard          #+#    #+#             */
-/*   Updated: 2022/02/11 04:47:18 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/03/01 17:46:23 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_HPP
 #define UTILS_HPP
 
+#include <iostream>
 #include <cstddef>
 #include <memory>
 #include <stdexcept>
