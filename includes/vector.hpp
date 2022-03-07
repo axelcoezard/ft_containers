@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 15:00:55 by acoezard          #+#    #+#             */
-/*   Updated: 2022/03/03 14:02:41 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/03/04 13:41:55 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,6 @@ namespace ft
 			explicit vector(size_type count, const value_type& value = value_type(), const allocator_type& alloc = allocator_type())
 				: _alloc(alloc), _capacity(0), _size(0), _begin(NULL), _end(NULL)
 			{
-				//_begin = _alloc.allocate(count);
-				//_end = _begin;
-				//while (count--)
-				//	_alloc.construct(_end++, value);
 				size_type	i = 0;
 				while (i < count)
 					push_back(value), i++;
@@ -85,15 +81,7 @@ namespace ft
 			vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(),
 				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr)
 				: _alloc(alloc), _capacity(0), _size(0), _begin(NULL), _end(NULL)
-			{
-				//size_type count = ft::distance(first, last);
-				//_capacity = count;
-				//_begin = _alloc.allocate(count);
-				//_end = _begin;
-				//while (count--)
-				//	_alloc.construct(_end++, *first);
-
-				assign(first, last);
+			{				assign(first, last);
 			}
 
 			vector(const vector& copy)
