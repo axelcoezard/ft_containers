@@ -1,5 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rbtree.hpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/17 17:11:33 by acoezard          #+#    #+#             */
+/*   Updated: 2022/03/17 17:11:58 by acoezard         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef TREE_HPP
 #define TREE_HPP
+
+#include <functional>
 
 namespace ft
 {
@@ -15,7 +29,7 @@ namespace ft
 		rbtree_node			*parent;
 	};
 
-	template <typename T, class Compare, class Alloca>
+	template <typename T, class Compare = std::less<T>, class Alloc = std::allocator<T> >
 	class rbtree
 	{
 		public:
@@ -35,7 +49,6 @@ namespace ft
 			value_compare	_comp;
 			node_ptr		_root;
 			node_ptr		NIL;
-
 
 		public:
 			tree(void)
