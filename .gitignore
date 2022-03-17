@@ -5,7 +5,6 @@
 logs.txt
 ft_containers
 
-tester1/
-tester2/
+tester*/
 bin/
 .vscode/
