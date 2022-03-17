@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 13:41:05 by acoezard          #+#    #+#             */
-/*   Updated: 2022/03/17 13:53:27 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/03/17 13:55:05 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,12 +108,12 @@ namespace ft
 
 			~random_access_iterator(void) {}
 
-			pointer	base(void) const
+			pointer base(void) const
 			{
 				return _ptr;
 			}
 
-			reference	operator*(void) const
+			reference operator*(void) const
 			{
 				return *_ptr;
 			}
@@ -159,12 +159,12 @@ namespace ft
 				return _ptr >= it._ptr;
 			}
 
-			random_access_iterator	operator+(difference_type n) const
+			random_access_iterator operator+(difference_type n) const
 			{
 				return _ptr + n;
 			}
 
-			random_access_iterator	operator-(difference_type n) const
+			random_access_iterator operator-(difference_type n) const
 			{
 				return _ptr - n;
 			}
@@ -179,50 +179,50 @@ namespace ft
 				return _ptr - it._ptr;
 			}
 
-			random_access_iterator&	operator++(void)
+			random_access_iterator& operator++(void)
 			{
 				_ptr++;
 				return *this;
 			}
 
-			random_access_iterator	operator++(int) //post-inc
+			random_access_iterator operator++(int) //post-inc
 			{
-				random_access_iterator	tmp(*this);
+				random_access_iterator tmp(*this);
 				operator++();
 				return tmp;
 			}
 
-			random_access_iterator&	operator--(void)
+			random_access_iterator& operator--(void)
 			{
 				_ptr--;
 				return *this;
 			}
 
-			random_access_iterator	operator--(int)
+			random_access_iterator operator--(int)
 			{
-				random_access_iterator	tmp(*this);
+				random_access_iterator tmp(*this);
 				operator--();
 				return tmp;
 			}
 
-			random_access_iterator&	operator+=(difference_type n)
+			random_access_iterator& operator+=(difference_type n)
 			{
 				_ptr += n;
 				return *this;
 			}
 
-			random_access_iterator&	operator-=(difference_type n)
+			random_access_iterator& operator-=(difference_type n)
 			{
 				_ptr -= n;
 				return *this;
 			}
 
-			pointer	operator->() const
+			pointer operator->() const
 			{
 				return &operator*();
 			}
 
-			reference	operator[](difference_type n) const
+			reference operator[](difference_type n) const
 			{
 				return *operator+(n);
 			}
