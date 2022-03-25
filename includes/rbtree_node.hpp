@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 11:14:02 by acoezard          #+#    #+#             */
-/*   Updated: 2022/03/18 11:50:32 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/03/25 18:54:44 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ namespace ft
 		rbtree_node			*parent;
 		rbtree_node			*NIL;
 
-		rbtree_node(void) : value(), color(black), left(nullptr), right(nullptr), parent(nullptr), NIL(nullptr) {}
-		rbtree_node(const value_type &val) : value(val), color(black), left(nullptr), right(nullptr), parent(nullptr), NIL(nullptr) {}
+		rbtree_node(void) : value(), color(black), left(NULL), right(NULL), parent(NULL), NIL(NULL) {}
+		rbtree_node(const value_type &val) : value(val), color(black), left(NULL), right(NULL), parent(NULL), NIL(NULL) {}
 	};
 }
 

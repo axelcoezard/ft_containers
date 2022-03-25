@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 15:00:55 by acoezard          #+#    #+#             */
-/*   Updated: 2022/03/17 16:39:14 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/03/25 18:54:44 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ namespace ft
 
 			template<class InputIterator>
 			vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(),
-				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr)
+				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = NULL)
 				: _alloc(alloc), _capacity(0), _size(0), _begin(NULL)
 			{
 				assign(first, last);
@@ -228,7 +228,7 @@ namespace ft
 
 			template<class InputIterator>
 			void assign(InputIterator first, InputIterator last,
-				typename ft::enable_if<!(ft::is_integral<InputIterator>::value) >::type* = nullptr)
+				typename ft::enable_if<!(ft::is_integral<InputIterator>::value) >::type* = NULL)
 			{
 				size_type dist = ft::distance(first, last);
 				clear();
@@ -286,7 +286,7 @@ namespace ft
 
 			template <class InputIterator>
 			void insert(iterator position, InputIterator first, InputIterator last,
-				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr)
+				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = NULL)
 			{
 				size_type dist = position - begin();
 				size_type n = last - first;

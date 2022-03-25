@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:23:37 by acoezard          #+#    #+#             */
-/*   Updated: 2022/03/03 14:38:16 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/03/25 23:03:11 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ namespace ft
 	template <typename T>	struct is_integral_base									: is_integral_type<false> {};
 	template <>				struct is_integral_base <bool>							: is_integral_type<true> {};
 	template <>				struct is_integral_base <char>							: is_integral_type<true> {};
-	template <>				struct is_integral_base <char16_t>						: is_integral_type<true> {};
-	template <>				struct is_integral_base <char32_t>						: is_integral_type<true> {};
 	template <>				struct is_integral_base <wchar_t>						: is_integral_type<true> {};
 	template <>				struct is_integral_base <signed char>					: is_integral_type<true> {};
 	template <>				struct is_integral_base <short int>						: is_integral_type<true> {};
@@ -43,8 +41,6 @@ namespace ft
 	template <>				struct is_integral_base <unsigned long long int>		: is_integral_type<true> {};
 	template <>				struct is_integral_base <const bool>					: is_integral_type<true> {};
 	template <>				struct is_integral_base <const char>					: is_integral_type<true> {};
-	template <>				struct is_integral_base <const char16_t>				: is_integral_type<true> {};
-	template <>				struct is_integral_base <const char32_t>				: is_integral_type<true> {};
 	template <>				struct is_integral_base <const wchar_t>					: is_integral_type<true> {};
 	template <>				struct is_integral_base <const signed char>				: is_integral_type<true> {};
 	template <>				struct is_integral_base <const short int>				: is_integral_type<true> {};
