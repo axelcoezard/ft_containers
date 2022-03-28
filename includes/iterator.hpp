@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 13:41:05 by acoezard          #+#    #+#             */
-/*   Updated: 2022/03/25 23:51:09 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/03/28 19:23:59 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ namespace ft
 			typedef Reference						reference;
 			typedef Category						iterator_category;
 
+		protected:
+			pointer	_ptr;
 	};
 
 	template <class Iterator>
@@ -76,115 +78,112 @@ namespace ft
 		protected:
 			typedef iterator<bidirectional_iterator_tag, Iterator>	iterator;
 		public:
-			typedef typename iterator::iterator_category			iterator_category;
 			typedef typename iterator::value_type					value_type;
 			typedef typename iterator::difference_type				difference_type;
 			typedef typename iterator::pointer						pointer;
 			typedef typename iterator::reference					reference;
-
-		protected:
-			pointer		_ptr;
+			typedef typename iterator::iterator_category			iterator_category;
 
 		public:
-			random_access_iterator(void) { _ptr = NULL; }
-			random_access_iterator(pointer ptr) { _ptr = ptr; }
-			random_access_iterator(const random_access_iterator & copy) { _ptr = copy._ptr; }
-			~random_access_iterator(void) {}
+			random_access_iterator(void) { this->_ptr = NULL; }
+			random_access_iterator(pointer ptr) { this->_ptr = ptr; }
+			random_access_iterator(const random_access_iterator & copy) { this->_ptr = copy._ptr; }
 
 			pointer base(void) const
 			{
-				return _ptr;
+				return this->_ptr;
 			}
 
 			reference operator*(void) const
 			{
-				return *_ptr;
+				return *(this->_ptr);
 			}
 
 			random_access_iterator &operator=(const random_access_iterator &copy)
 			{
-				_ptr = copy._ptr;
+				if (*this != copy)
+					this->_ptr = copy._ptr;
 				return *this;
 			}
 
-			operator random_access_iterator<const Iterator>(void) const
+			operator random_access_iterator<const Iterator>(void)
 			{
-				return random_access_iterator<const Iterator>(_ptr);
+				return random_access_iterator<const Iterator>(this->_ptr);
 			}
 
 			difference_type operator==(const random_access_iterator &it) const
 			{
-				return _ptr == it._ptr;
+				return this->_ptr == it._ptr;
 			}
 
 			difference_type operator!=(const random_access_iterator &it) const
 			{
-				return _ptr != it._ptr;
+				return this->_ptr != it._ptr;
 			}
 
 			difference_type operator<(const random_access_iterator &it) const
 			{
-				return _ptr < it._ptr;
+				return this->_ptr < it._ptr;
 			}
 
 			difference_type operator>(const random_access_iterator &it) const
 			{
-				return _ptr > it._ptr;
+				return this->_ptr > it._ptr;
 			}
 
 			difference_type operator<=(const random_access_iterator &it) const
 			{
-				return _ptr <= it._ptr;
+				return this->_ptr <= it._ptr;
 			}
 
 			difference_type operator>=(const random_access_iterator &it) const
 			{
-				return _ptr >= it._ptr;
+				return this->_ptr >= it._ptr;
 			}
 
 			random_access_iterator operator+(difference_type n) const
 			{
-				return _ptr + n;
+				return this->_ptr + n;
 			}
 
 			random_access_iterator operator-(difference_type n) const
 			{
-				return _ptr - n;
+				return this->_ptr - n;
 			}
 
 			difference_type operator+(const random_access_iterator &it)
 			{
-				return _ptr + it._ptr;
+				return this->_ptr + it._ptr;
 			}
 
 			difference_type operator-(const random_access_iterator &it)
 			{
-				return _ptr - it._ptr;
+				return this->_ptr - it._ptr;
 			}
 
 			random_access_iterator& operator++(void)
 			{
-				_ptr++;
+				this->_ptr += 1;
 				return *this;
 			}
 
 			random_access_iterator operator++(int)
 			{
-				random_access_iterator tmp(*this);
-				operator++();
+				random_access_iterator tmp(this->_ptr);
+				this->_ptr += 1;
 				return tmp;
 			}
 
 			random_access_iterator& operator--(void)
 			{
-				_ptr--;
+				this->_ptr -= 1;
 				return *this;
 			}
 
 			random_access_iterator operator--(int)
 			{
-				random_access_iterator tmp(*this);
-				operator--();
+				random_access_iterator tmp(this->_ptr);
+				this->_ptr -= 1;
 				return tmp;
 			}
 
@@ -198,24 +197,24 @@ namespace ft
 
 			random_access_iterator& operator+=(difference_type n)
 			{
-				_ptr += n;
+				this->_ptr += n;
 				return *this;
 			}
 
 			random_access_iterator& operator-=(difference_type n)
 			{
-				_ptr -= n;
+				this->_ptr -= n;
 				return *this;
 			}
 
 			pointer operator->() const
 			{
-				return &operator*();
+				return this->_ptr;
 			}
 
 			reference operator[](difference_type n) const
 			{
-				return *operator+(n);
+				return *(this->_ptr + n);
 			}
 	};
 
@@ -475,110 +474,102 @@ namespace ft
 			typedef iterator<bidirectional_iterator_tag, Iterator>	iterator;
 		public:
 			typedef typename iterator::value_type					value_type;
-			typedef typename iterator::iterator_category			iterator_category;
 			typedef typename iterator::difference_type				difference_type;
+			typedef typename iterator::iterator_category			iterator_category;
 			typedef typename iterator::pointer						pointer;
 			typedef typename iterator::reference					reference;
 
-		protected:
-			pointer		_ptr;
 
 		public:
-			bidirectional_iterator(void) { _ptr = NULL; };
-
-			bidirectional_iterator(pointer ptr) { _ptr = ptr; };
-
-			template <class Iter>
-			bidirectional_iterator(const bidirectional_iterator<Iter> & copy)
-			{
-				*this = copy;
-			}
-
-			~bidirectional_iterator(void) { }
+			bidirectional_iterator(void) {this->_ptr = NULL; };
+			bidirectional_iterator(pointer ptr) { this->_ptr = ptr; };
+			bidirectional_iterator(const bidirectional_iterator & copy) { *this = copy; }
 
 			pointer base(void) const
 			{
-				return _ptr;
+				return this->_ptr;
 			}
 
 			operator bidirectional_iterator<const Iterator>(void)
 			{
-				return bidirectional_iterator<const Iterator>(_ptr);
+				return bidirectional_iterator<const Iterator>(this->_ptr);
 			}
 
 			bidirectional_iterator &operator=(const bidirectional_iterator &copy)
 			{
-				if (this != &copy)
-					_ptr = copy._ptr;
+				if (*this != copy)
+					this->_ptr = copy._ptr;
 				return (*this);
 			}
 
 			reference operator*(void) const
 			{
-				return *_ptr;
+				return *(this->_ptr);
 			}
 
 			pointer operator->(void)
 			{
-				return _ptr;
+				return this->_ptr;
 			}
 
 			bidirectional_iterator & operator++(void)
 			{
-				_ptr += 1;
+				this->_ptr += 1;
 				return *this;
 			}
 
 			bidirectional_iterator operator++(int)
 			{
-				bidirectional_iterator tmp(_ptr);
-				_ptr += 1;
+				bidirectional_iterator tmp(this->_ptr);
+				this->_ptr += 1;
 				return tmp;
 			}
 
 			bidirectional_iterator & operator--(void)
 			{
-				_ptr -= 1;
+				this->_ptr -= 1;
 				return *this;
 			}
 
 			bidirectional_iterator operator--(int)
 			{
-				bidirectional_iterator tmp(_ptr);
-				_ptr -= 1;
+				bidirectional_iterator tmp(this->_ptr);
+				this->_ptr -= 1;
 				return tmp;
 			}
 
 			bool operator==(bidirectional_iterator const & rhs) const
 			{
-				return _ptr == rhs._ptr;
+				return this->_ptr == rhs._ptr;
 			}
 
 			bool operator==(bidirectional_iterator<const Iterator> & rhs) const
 			{
-				return _ptr == rhs._ptr;
+				return this->_ptr == rhs._ptr;
 			}
 
 			bool operator!=(bidirectional_iterator const & rhs) const
 			{
-				return _ptr != rhs._ptr;
+				return this->_ptr != rhs._ptr;
 			}
 
 			bool operator!=(bidirectional_iterator<const Iterator> & rhs) const
 			{
-				return _ptr != rhs._ptr;
+				return this->_ptr != rhs._ptr;
 			}
 	};
 
 	template <class Iterator1, class Iterator2>
-	bool operator==(const bidirectional_iterator<Iterator1>& lhs, const bidirectional_iterator<Iterator2>& rhs) {
+	bool operator==(const bidirectional_iterator<Iterator1>& lhs, const bidirectional_iterator<Iterator2>& rhs)
+	{
 		return &(*lhs.base()) == &(*rhs.base());
 	}
 
 	template <class Iterator1, class Iterator2>
-	bool operator!=(const bidirectional_iterator<Iterator1>& lhs, const bidirectional_iterator<Iterator2>& rhs) {
+	bool operator!=(const bidirectional_iterator<Iterator1>& lhs, const bidirectional_iterator<Iterator2>& rhs)
+	{
 		return &(*lhs.base()) != &(*rhs.base());
-	};
+	}
 
 	template <class InputIterator>
 	typename iterator_traits<InputIterator>::difference_type

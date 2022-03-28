@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 15:00:55 by acoezard          #+#    #+#             */
-/*   Updated: 2022/03/25 18:54:44 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/03/28 20:04:51 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 #include "utils.hpp"
 #include "iterator.hpp"
+#include <cstring>
 
 namespace ft
 {
@@ -257,78 +258,95 @@ namespace ft
 				_size--;
 			}
 
-			iterator insert(iterator position, const value_type& value)
+			iterator	insert(iterator pos, const T& value)
 			{
-				size_type dist = position - begin();
-				if (_size >= _capacity)
+				difference_type int_pos = pos - begin();
+				if (capacity() == size())
 					_alloc_re();
-				_size++;
-				for (size_type i = _size - 1; i > dist; i--)
-					_alloc.construct(_begin + i, *(_begin + i - 1));
-				_alloc.construct(_begin + dist, value);
-				return iterator(begin() + dist);
+				vector temp(iterator(begin() + int_pos), end());
+				for (size_t i = 0; i < temp.size(); i++)
+					pop_back();
+				push_back(value);
+				iterator it = temp.begin();
+				for (size_t i = 0; i < temp.size(); i++, it++)
+					push_back(*it);
+				return begin() + int_pos;
+			};
+
+			void insert(iterator pos, size_type count, const T& value)
+			{
+				difference_type int_pos = pos - this->begin();
+				while (capacity() - size() < count)
+					_alloc_re();
+				vector temp(begin() + int_pos, end());
+				for (size_t i = 0; i < temp.size(); i++)
+					pop_back();
+				while (count > 0)
+					push_back(value), count--;
+				for (iterator it = temp.begin(); it != temp.end(); it++)
+					push_back(*it);
+			};
+
+			template<class InputIterator>
+			void insert(iterator pos, InputIterator first, InputIterator last,
+			typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = NULL)
+			{
+				size_t count = 0;
+				difference_type int_pos = pos - this->begin();
+				while (first != last)
+					first++, count++;
+				first -= count;
+				while (capacity() - size() < count)
+					_alloc_re();
+				vector temp(begin() + int_pos, end());
+				for (size_t i = 0; i < temp.size(); i++)
+					pop_back();
+				while (first != last)
+					push_back(*first), first++;
+				for (iterator it = temp.begin(); it != temp.end(); it++)
+					push_back(*it);
+			};
+
+			iterator erase (iterator position)
+			{
+				for (size_type i = 0; i < _size ; i++)
+				{
+					iterator it(_begin + i);
+					if (position != it)
+						continue;
+					_alloc.destroy(_begin + i);
+					for (size_type j = i + 1; j < _size; j++, i++)
+						_alloc.construct(&_begin[i], _begin[j]);
+					_size -= 1;
+					return it;
+				}
+				return position;
 			}
 
-			void insert(iterator position, size_type n, const value_type& value)
+			iterator erase (iterator first, iterator last)
 			{
-				size_type dist = position - begin();
-				if (_size + n > _capacity)
+				size_type dist = ft::distance(first, last);
+				size_type k = 0;
+				for (size_type i = 0; i < _size ; i++)
 				{
-					if (n > _size)	reserve(_size + n);
-					else			_alloc_re();
+					if (first != _begin + i) continue;
+					size_type save = i;
+					size_type j = i;
+					for (; i < _size; i++ )
+					{
+						for (; k < dist; k++, i++)
+							_alloc.destroy(_begin + i);
+						if (i != _size)
+						{
+							_alloc.construct(&_begin[j++], _begin[i]);
+							_alloc.destroy(_begin + i);
+						}
+					}
+					_size -= dist;
+					return iterator(_begin + save);
 				}
-				_size += n;
-				for (size_type i = _size - 1; i > dist; i--)
-					_alloc.construct(_begin + i, *(_begin + (i - n)));
-				for (size_type i = 0; i < n; i++)
-					_alloc.construct(_begin + dist + i, value);
-			}
-
-			template <class InputIterator>
-			void insert(iterator position, InputIterator first, InputIterator last,
-				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = NULL)
-			{
-				size_type dist = position - begin();
-				size_type n = last - first;
-				if (_size + n > _capacity)
-				{
-					if (n > _size)	reserve(_size + n);
-					else			_alloc_re();
-				}
-				_size += n;
-				for (size_type i = _size - 1; i > dist; i--)
-					_alloc.construct(_begin + i, *(_begin + (i - n)));
-				for (size_type i = 0; i < n; i++)
-					_alloc.construct(_begin + dist + i, *(first + i));
-			}
-
-			iterator erase(iterator position)
-			{
-				size_type dist = position - begin();
-				_alloc.destroy(_begin + dist);
-				for (size_type i = dist; i < _size; i++)
-				{
-					_alloc.construct(_begin + i, *(_begin + i + 1));
-					_alloc.destroy(_begin + i + 1);
-				}
-				_size--;
-				return iterator(begin() + dist);
-			}
-
-			iterator erase(iterator first, iterator last)
-			{
-				size_type dist = first - begin();
-				size_type n = last - first;
-				for (size_type i = 0; i < n; i++)
-					_alloc.destroy(_begin + dist + i);
-				for (size_type i = 0; i < n; i++)
-				{
-					_alloc.construct(_begin + i, *(_begin + i + n));
-					_alloc.destroy(_begin + i + n);
-				}
-				_size -= n;
-				return iterator(begin() + dist);
-			}
+				return first;
+			};
 
 			void swap(vector & x)
 			{
@@ -346,6 +364,7 @@ namespace ft
 				for (size_type i = 0; i < _size; i++)
 					_alloc.destroy(_begin + i);
 				_size = 0;
+				_capacity = 0;
 			}
 
 			size_type size(void) const
