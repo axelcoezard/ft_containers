@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 15:00:55 by acoezard          #+#    #+#             */
-/*   Updated: 2022/03/28 20:04:51 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/03/28 20:07:42 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,7 +258,7 @@ namespace ft
 				_size--;
 			}
 
-			iterator	insert(iterator pos, const T& value)
+			iterator insert(iterator pos, const T& value)
 			{
 				difference_type int_pos = pos - begin();
 				if (capacity() == size())
@@ -271,7 +271,7 @@ namespace ft
 				for (size_t i = 0; i < temp.size(); i++, it++)
 					push_back(*it);
 				return begin() + int_pos;
-			};
+			}
 
 			void insert(iterator pos, size_type count, const T& value)
 			{
@@ -285,7 +285,7 @@ namespace ft
 					push_back(value), count--;
 				for (iterator it = temp.begin(); it != temp.end(); it++)
 					push_back(*it);
-			};
+			}
 
 			template<class InputIterator>
 			void insert(iterator pos, InputIterator first, InputIterator last,
