@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 22:25:19 by acoezard          #+#    #+#             */
-/*   Updated: 2022/03/28 22:31:47 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/03/28 22:38:38 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,13 +125,6 @@ namespace ft
 			const_reverse_iterator rend() const
 			{
 				return const_reverse_iterator(begin());
-			}
-
-			void print()
-			{
-				if (_root != _NIL)
-					_deepPrint(_root, "", true);
-				std::cout << "size : " << size() << std::endl;
 			}
 
 			void clear()
@@ -431,27 +424,6 @@ namespace ft
 						return tmp;
 				}
 				return NULL;
-			}
-
-			void _deepPrint(node_ptr root, std::string indent, bool last) const
-			{
-				if (root != _NIL)
-				{
-					std::cout << indent;
-					if (last)
-					{
-						std::cout << "R----";
-						indent += "   ";
-					}
-					else
-					{
-						std::cout << "L----";
-						indent += "|  ";
-					}
-					std::cout << root->data.first << " : " << root->data.second << std::endl;
-					_deepPrint(root->left, indent, false);
-					_deepPrint(root->right, indent, true);
-				}
 			}
 
 			node_ptr _getRoot(node_ptr n) const
