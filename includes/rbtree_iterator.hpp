@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 21:19:41 by acoezard          #+#    #+#             */
-/*   Updated: 2022/04/01 14:20:26 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/04/01 20:57:46 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,14 @@ namespace ft
 			node_ptr	_NIL;
 
 		public:
-			rbtree_iterator() : _it(NULL), _root(NULL), _NIL(NULL) {}
+			rbtree_iterator(void) : _it(NULL), _root(NULL), _NIL(NULL) {}
 			rbtree_iterator(node_ptr it, node_ptr root, node_ptr NIL) : _it(it), _root(root), _NIL(NIL) {}
 			rbtree_iterator(const rbtree_iterator &cpy) : _it(cpy._it), _root(cpy._root), _NIL(cpy._NIL) {}
+
+			operator rbtree_iterator<const T>(void) const
+			{
+				return rbtree_iterator<const T>(_it, _root, _NIL);
+			}
 
 			rbtree_iterator &operator=(const rbtree_iterator &it)
 			{
@@ -73,7 +78,7 @@ namespace ft
 				return &_it->data;
 			}
 
-			rbtree_iterator &operator++()
+			rbtree_iterator &operator++(void)
 			{
 				if (_it != _NIL)
 					_it = _findNext();
@@ -87,7 +92,7 @@ namespace ft
 				return tmp;
 			}
 
-			rbtree_iterator &operator--()
+			rbtree_iterator &operator--(void)
 			{
 				if (_it != _NIL)
 					_it = _findPrev();
@@ -103,7 +108,7 @@ namespace ft
 				return tmp;
 			}
 
-			node_ptr getCurrent() const
+			node_ptr getCurrent(void) const
 			{
 				return _it;
 			}
@@ -123,7 +128,7 @@ namespace ft
 				return n;
 			}
 
-			node_ptr _findNext()
+			node_ptr _findNext(void)
 			{
 				node_ptr n = _it;
 				if (n->right != _NIL)
@@ -137,7 +142,7 @@ namespace ft
 				return next;
 			}
 
-			node_ptr _findPrev()
+			node_ptr _findPrev(void)
 			{
 				node_ptr n = _it;
 				if (n->left != _NIL)

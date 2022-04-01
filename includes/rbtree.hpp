@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 22:25:19 by acoezard          #+#    #+#             */
-/*   Updated: 2022/04/01 15:12:55 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/04/01 20:55:02 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ namespace ft
 				_deepCopy(*this, copy._root, copy._NIL);
 			}
 
-			~rbtree()
+			~rbtree(void)
 			{
 				clear();
 				_alloc.deallocate(_NIL, 1);
@@ -88,36 +88,36 @@ namespace ft
 				return *this;
 			}
 
-			iterator begin()
+			iterator begin(void)
 			{
 				return iterator(_findMin(_root), _root, _NIL);
 			}
 
-			const_iterator begin() const
+			const_iterator begin(void) const
 			{
 				return const_iterator(_findMin(_root), _root, _NIL);
 			}
 
-			iterator end()
+			iterator end(void)
 			{
 				return iterator(_NIL, _root, _NIL);
 			}
 
-			const_iterator end() const
+			const_iterator end(void) const
 			{
 				return const_iterator(_NIL, _root, _NIL);
 			}
 
-			reverse_iterator rbegin()
+			reverse_iterator rbegin(void)
 			{
 				return reverse_iterator(end());
 			}
 
-			const_reverse_iterator rbegin() const
+			const_reverse_iterator rbegin(void) const
 			{
 				return const_reverse_iterator(end());
 			}
-			reverse_iterator rend()
+			reverse_iterator rend(void)
 			{
 				return reverse_iterator(begin());
 			}
@@ -127,19 +127,19 @@ namespace ft
 				return const_reverse_iterator(begin());
 			}
 
-			void clear()
+			void clear(void)
 			{
 				_deepClear(_root);
 				_root = _NIL;
 				_size = 0;
 			}
 
-			size_type size() const
+			size_type size(void) const
 			{
 				return _size;
 			}
 
-			size_type max_size() const
+			size_type max_size(void) const
 			{
 				return _alloc.max_size();
 			}

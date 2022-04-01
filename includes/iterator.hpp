@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 13:41:05 by acoezard          #+#    #+#             */
-/*   Updated: 2022/04/01 20:22:37 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/04/01 20:43:12 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -359,12 +359,13 @@ namespace ft
 			reverse_iterator(const reverse_iterator<Iter> & copy)
 				: _iter(copy.base()) {}
 
-			operator reverse_iterator<const T>(void)
+			operator reverse_iterator<const T>(void) const
 			{
 				return reverse_iterator<const T>(_iter);
 			}
 
-			reverse_iterator &operator=(const reverse_iterator &copy)
+			template<class Iterator>
+			reverse_iterator &operator=(const reverse_iterator<Iterator> &copy)
 			{
 				if (*this != copy)
 					_iter = copy.base();
@@ -376,7 +377,13 @@ namespace ft
 				return _iter;
 			}
 
-			reference operator*(void) const
+			reference operator*(void)
+			{
+				iterator_type tmp(_iter);
+				return *(--tmp);
+			}
+
+			const reference operator*(void) const
 			{
 				iterator_type tmp(_iter);
 				return *(--tmp);
@@ -440,7 +447,12 @@ namespace ft
 				return &operator*();
 			}
 
-			reference operator[](difference_type n) const
+			reference operator[](difference_type n)
+			{
+				return *(_iter - n - 1);
+			}
+
+			const reference operator[](difference_type n) const
 			{
 				return *(_iter - n - 1);
 			}
@@ -600,7 +612,6 @@ namespace ft
 	{
 		return lhs.base() != rhs.base();
 	}
-
 }
 
 #endif
