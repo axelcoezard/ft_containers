@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 22:09:35 by acoezard          #+#    #+#             */
-/*   Updated: 2022/04/01 15:17:17 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/04/01 15:50:51 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,9 @@ namespace ft
 				insert(first, last);
 			}
 
-			map(const map &x) : _tree(x._tree)
+			map(const map &x)
 			{
-				_alloc = x._alloc;
-				_keyComp = x._keyComp;
-				_valComp = x._valComp;
+				*this = x;
 			}
 
 			map &operator=(const map &x)
@@ -99,6 +97,8 @@ namespace ft
 				_keyComp = x._keyComp;
 				_valComp = x._valComp;
 				_tree = x._tree;
+				clear();
+				insert(x.begin(), x.end());
 				return *this;
 			}
 
@@ -124,22 +124,22 @@ namespace ft
 
 			reverse_iterator rbegin(void)
 			{
-				return _tree.rbegin();
+				return reverse_iterator(_tree.rbegin());
 			}
 
 			const_reverse_iterator rbegin(void) const
 			{
-				return _tree.rbegin();
+				return const_reverse_iterator(_tree.rbegin());
 			}
 
 			reverse_iterator rend(void)
 			{
-				return _tree.rend();
+				return reverse_iterator(_tree.rend());
 			}
 
 			const_reverse_iterator rend(void) const
 			{
-				return _tree.rend();
+				return const_reverse_iterator(_tree.rend());
 			}
 
 			bool empty(void) const
@@ -274,9 +274,7 @@ namespace ft
 	template <class Key, class T, class Compare, class Alloc>
 	bool operator==(const ft::map<Key, T, Compare, Alloc> &lhs, const ft::map<Key, T, Compare, Alloc> &rhs)
 	{
-		if (lhs.size() == rhs.size())
-			return ft::equal(lhs.begin(), lhs.end(), rhs.begin());
-		return false;
+		return lhs.size() == rhs.size() && ft::equal(lhs.begin(), lhs.end(), rhs.begin());
 	}
 
 	template <class Key, class T, class Compare, class Alloc>
@@ -294,7 +292,7 @@ namespace ft
 	template <class Key, class T, class Compare, class Alloc>
 	bool operator<=(const ft::map<Key, T, Compare, Alloc> &lhs, const ft::map<Key, T, Compare, Alloc> &rhs)
 	{
-		return !(rhs < lhs);
+		return !(rhs > lhs);
 	}
 
 	template <class Key, class T, class Compare, class Alloc>
