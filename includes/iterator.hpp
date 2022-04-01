@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 13:41:05 by acoezard          #+#    #+#             */
-/*   Updated: 2022/04/01 14:25:03 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/04/01 16:10:55 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,11 @@ namespace ft
 				return this->_ptr;
 			}
 
+			reference operator*(void)
+			{
+				return *(this->_ptr);
+			}
+
 			reference operator*(void) const
 			{
 				return *(this->_ptr);
@@ -194,12 +199,12 @@ namespace ft
 				return this->_ptr - n;
 			}
 
-			difference_type operator+(const random_access_iterator &it)
+			difference_type operator+(const random_access_iterator &it) const
 			{
 				return this->_ptr + it._ptr;
 			}
 
-			difference_type operator-(const random_access_iterator &it)
+			difference_type operator-(const random_access_iterator &it) const
 			{
 				return this->_ptr - it._ptr;
 			}
@@ -253,6 +258,11 @@ namespace ft
 			pointer operator->() const
 			{
 				return this->_ptr;
+			}
+
+			reference operator[](difference_type n)
+			{
+				return *(this->_ptr + n);
 			}
 
 			reference operator[](difference_type n) const
@@ -393,7 +403,7 @@ namespace ft
 
 			difference_type operator-(reverse_iterator rhs)
 			{
-				return ft::distance(rhs._iter - _iter);
+				return ft::distance(rhs._iter, _iter);
 			}
 
 			reverse_iterator& operator++(void)

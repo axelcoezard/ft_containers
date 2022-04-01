@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 15:00:55 by acoezard          #+#    #+#             */
-/*   Updated: 2022/03/28 20:07:42 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/04/01 16:09:26 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -291,12 +291,8 @@ namespace ft
 			void insert(iterator pos, InputIterator first, InputIterator last,
 			typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = NULL)
 			{
-				size_t count = 0;
 				difference_type int_pos = pos - this->begin();
-				while (first != last)
-					first++, count++;
-				first -= count;
-				while (capacity() - size() < count)
+				while (capacity() - size() < 0)
 					_alloc_re();
 				vector temp(begin() + int_pos, end());
 				for (size_t i = 0; i < temp.size(); i++)
