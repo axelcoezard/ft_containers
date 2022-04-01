@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:23:37 by acoezard          #+#    #+#             */
-/*   Updated: 2022/03/25 23:03:11 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/04/01 21:38:13 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,27 +84,29 @@ namespace ft
 	template <class InputIterator1, class InputIterator2>
 	bool	lexicographical_compare(InputIterator1 first1, InputIterator1 last1, InputIterator2 first2, InputIterator2 last2)
 	{
-		while (first1 != last1 && first2 != last2)
+		while (first1 != last1)
 		{
-			if (*first1 < *first2) return (true);
+			if (first2 == last2) return false;
 			if (*first2 < *first1) return (false);
+			if (*first1 < *first2) return (true);
 			++first1;
 			++first2;
 		}
-		return (first1 == last1 && first2 != last2);
+		return first2 != last2;
 	}
 
 	template< class InputIterator1, class InputIterator2, class Comparator>
 	bool	lexicographical_compare(InputIterator1 first1, InputIterator1 last1, InputIterator2 first2, InputIterator2 last2, Comparator comp)
 	{
-		while (first1 != last1 && first2 != last2)
+		while (first1 != last1)
 		{
-			if (comp(*first1, *first2)) return (true);
+			if (first2 == last2) return false;
 			if (comp(*first2, *first1)) return (false);
+			if (comp(*first1, *first2)) return (true);
 			++first1;
 			++first2;
 		}
-		return (first1 == last1 && first2 != last2);
+		return first2 != last2;
 	}
 
 	template <class InputIterator, class OutputIterator>

@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 22:09:35 by acoezard          #+#    #+#             */
-/*   Updated: 2022/04/01 20:09:34 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/04/01 21:41:32 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -310,7 +310,7 @@ namespace ft
 	template <class Key, class T, class Compare, class Alloc>
 	void swap(ft::map<Key, T, Compare, Alloc> &lhs, ft::map<Key, T, Compare, Alloc> &rhs)
 	{
-		lhs.swap(rhs);
+		rhs.swap(lhs);
 	}
 };
 
