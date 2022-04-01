@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 13:41:05 by acoezard          #+#    #+#             */
-/*   Updated: 2022/03/28 20:47:05 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/04/01 14:25:03 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -341,8 +341,7 @@ namespace ft
 			iterator_type	_iter;
 
 		public:
-			reverse_iterator(void)
-				: _iter(NULL) { };
+			reverse_iterator(void) { };
 
 			explicit reverse_iterator(iterator_type it)
 				: _iter(it) { };

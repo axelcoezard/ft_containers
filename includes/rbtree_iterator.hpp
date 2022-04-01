@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 21:19:41 by acoezard          #+#    #+#             */
-/*   Updated: 2022/03/28 22:33:44 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/04/01 14:20:26 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,11 @@ namespace ft
 			}
 
 			reference operator*(void)
+			{
+				return _it->data;
+			}
+
+			reference operator*(void) const
 			{
 				return _it->data;
 			}
