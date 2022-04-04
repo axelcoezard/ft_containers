@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 22:25:19 by acoezard          #+#    #+#             */
-/*   Updated: 2022/04/01 20:55:02 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/04/04 22:04:24 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ namespace ft
 			typedef rbtree_node<value_type>					node;
 			typedef node*									node_ptr;
 			typedef ft::rbtree_iterator<node>				iterator;
-			typedef ft::rbtree_iterator<node>				const_iterator;
+			typedef ft::rbtree_iterator<node>			const_iterator;
 			typedef ft::reverse_iterator<iterator>			reverse_iterator;
 			typedef ft::reverse_iterator<const_iterator>	const_reverse_iterator;
 

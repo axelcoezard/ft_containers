@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 22:09:35 by acoezard          #+#    #+#             */
-/*   Updated: 2022/04/04 16:43:35 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/04/04 21:57:08 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ namespace ft
 			typedef size_t										size_type;
 			typedef Key											key_type;
 			typedef T											mapped_type;
-			typedef ft::pair<key_type, mapped_type>				value_type;
+			typedef ft::pair<const key_type, mapped_type>		value_type;
 			typedef Compare										key_compare;
 			typedef Alloc										allocator_type;
 			typedef typename allocator_type::reference			reference;
@@ -104,42 +104,42 @@ namespace ft
 
 			iterator begin(void)
 			{
-				return iterator(_tree.begin());
+				return _tree.begin();
 			}
 
 			const_iterator begin(void) const
 			{
-				return const_iterator(_tree.begin());
+				return _tree.begin();
 			}
 
 			iterator end(void)
 			{
-				return iterator(_tree.end());
+				return _tree.end();
 			}
 
 			const_iterator end(void) const
 			{
-				return const_iterator(_tree.end());
+				return _tree.end();
 			}
 
 			reverse_iterator rbegin(void)
 			{
-				return reverse_iterator(_tree.rbegin());
+				return _tree.rbegin();
 			}
 
 			const_reverse_iterator rbegin(void) const
 			{
-				return const_reverse_iterator(_tree.rbegin());
+				return _tree.rbegin();
 			}
 
 			reverse_iterator rend(void)
 			{
-				return reverse_iterator(_tree.rend());
+				return _tree.rend();
 			}
 
 			const_reverse_iterator rend(void) const
 			{
-				return const_reverse_iterator(_tree.rend());
+				return _tree.rend();
 			}
 
 			bool empty(void) const
