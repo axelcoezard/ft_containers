@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 13:41:05 by acoezard          #+#    #+#             */
-/*   Updated: 2022/04/01 20:43:12 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/04/04 16:40:10 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,15 +199,15 @@ namespace ft
 				return this->_ptr - n;
 			}
 
-			difference_type operator+(const random_access_iterator &it) const
-			{
-				return this->_ptr + it._ptr;
-			}
+			//difference_type operator+(const random_access_iterator &it) const
+			//{
+			//	return this->_ptr + it._ptr;
+			//}
 
-			difference_type operator-(const random_access_iterator &it) const
-			{
-				return this->_ptr - it._ptr;
-			}
+			//difference_type operator-(const random_access_iterator &it) const
+			//{
+			//	return this->_ptr - it._ptr;
+			//}
 
 			random_access_iterator& operator++(void)
 			{
@@ -255,7 +255,7 @@ namespace ft
 				return *this;
 			}
 
-			pointer operator->() const
+			pointer operator->(void) const
 			{
 				return this->_ptr;
 			}
@@ -444,7 +444,9 @@ namespace ft
 
 			pointer	operator->(void) const
 			{
-				return &operator*();
+				iterator_type tmp(_iter);
+				--tmp;
+				return &(*tmp);
 			}
 
 			reference operator[](difference_type n)
@@ -554,7 +556,7 @@ namespace ft
 				return this->_ptr;
 			}
 
-			bidirectional_iterator & operator++(void)
+			bidirectional_iterator& operator++(void)
 			{
 				this->_ptr += 1;
 				return *this;
@@ -567,7 +569,7 @@ namespace ft
 				return tmp;
 			}
 
-			bidirectional_iterator & operator--(void)
+			bidirectional_iterator& operator--(void)
 			{
 				this->_ptr -= 1;
 				return *this;
