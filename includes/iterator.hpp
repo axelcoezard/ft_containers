@@ -198,16 +198,6 @@ namespace ft
 				return this->_ptr - n;
 			}
 
-			//difference_type operator+(const random_access_iterator &it) const
-			//{
-			//	return this->_ptr + it._ptr;
-			//}
-
-			//difference_type operator-(const random_access_iterator &it) const
-			//{
-			//	return this->_ptr - it._ptr;
-			//}
-
 			random_access_iterator& operator++(void)
 			{
 				this->_ptr += 1;
