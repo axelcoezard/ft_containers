@@ -6,12 +6,13 @@
 #    By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/01 10:40:18 by acoezard          #+#    #+#              #
-#    Updated: 2022/04/05 16:57:51 by acoezard         ###   ########.fr        #
+#    Updated: 2022/04/05 17:05:49 by acoezard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	:=	ft_containers
-ARCH	:=	x64
+STD_NAME	:=	std_containers
+FT_NAME		:=	ft_containers
+ARCH		:=	x64
 
 # -----------------------------------------------------------------------------
 # COMPILATION
@@ -35,16 +36,15 @@ __EOC		:=	"\033[0;0m"
 # -----------------------------------------------------------------------------
 # RULES
 # -----------------------------------------------------------------------------
-bin/%.o: %.cpp
-	@mkdir -p ${dir $@}
-	@${CC} ${CFLAGS} -o $@ -c $< -I includes
-	@echo ${__GREEN}"Compiling "${__WHITE}$<${__EOC}
+all: ${FT_NAME} ${STD_NAME}
 
-all: ${NAME}
+${FT_NAME}:
+	@${CC} ${CFLAGS} ${SRCS} -I includes -o ${FT_NAME}
+	@echo ${__GREEN}"Finished "${__WHITE}${FT_NAME}" v"${VERSION}" bin target"${__EOC}
 
-${NAME}: ${OBJS}
-	@${CC} ${CFLAGS} ${OBJS} -o ${NAME}
-	@echo ${__GREEN}"Finished "${__WHITE}${NAME}" v"${VERSION}" bin target"${__EOC}
+${STD_NAME}:
+	@${CC} ${CFLAGS} ${SRCS} -I includes -DSTD=1 -o ${STD_NAME}
+	@echo ${__GREEN}"Finished "${__WHITE}${STD_NAME}" v"${VERSION}" bin target"${__EOC}
 
 test:
 	@cd tests && ./do.sh
@@ -53,7 +53,7 @@ clean:
 	@rm -rf bin/
 
 fclean: clean
-	@rm -rf ${NAME}
+	@rm -rf ${FT_NAME} ${STD_NAME}
 	@echo ${__BLUE}"Cleaned "${__WHITE}"bin target(s)"${__EOC}
 
 re: fclean all
