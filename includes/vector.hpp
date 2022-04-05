@@ -6,17 +6,9 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 15:00:55 by acoezard          #+#    #+#             */
-/*   Updated: 2022/04/01 16:09:26 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/04/05 16:40:11 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/**
- * SOURCES:
- *
- * https://en.cppreference.com/w/cpp/container/vector
- * https://www.cplusplus.com/reference/vector/vector
- * https://opensource.apple.com/source/libcpp/libcpp-31/include/vector.auto.html
- */
 
 #ifndef VECTOR_HPP
 #define VECTOR_HPP
