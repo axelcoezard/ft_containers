@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 13:41:05 by acoezard          #+#    #+#             */
-/*   Updated: 2022/04/04 22:19:46 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/04/05 13:05:38 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #define ITERATOR_HPP
 
 #include "utils.hpp"
-#include "rbtree_node.hpp"
 
 namespace ft
 {
@@ -521,7 +520,6 @@ namespace ft
 			typedef typename iterator::iterator_category			iterator_category;
 			typedef typename iterator::pointer						pointer;
 			typedef typename iterator::reference					reference;
-
 
 		public:
 			bidirectional_iterator(void) {this->_ptr = NULL; };

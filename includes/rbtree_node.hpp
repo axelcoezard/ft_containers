@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 21:30:13 by acoezard          #+#    #+#             */
-/*   Updated: 2022/03/28 22:24:46 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/04/05 12:12:29 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,18 @@ namespace ft
 
 		value_type		data;
 
-		rbtree_node(value_type const &src) : data(src) {}
+		rbtree_node(const value_type& src) : data(src) {}
+
+		rbtree_node &operator=(const rbtree_node& rhs) {
+			if (this != rhs)
+			{
+				this->left = rhs.left;
+				this->right = rhs.right;
+				this->parent = rhs.parent;
+				this->color = rhs.color;
+			}
+			return (*this);
+		}
 	};
 }
 

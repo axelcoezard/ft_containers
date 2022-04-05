@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 22:25:19 by acoezard          #+#    #+#             */
-/*   Updated: 2022/04/04 22:04:24 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/04/05 14:38:43 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,23 @@ namespace ft
 	class rbtree
 	{
 		public:
-			typedef T										value_type;
-			typedef Compare									key_compare;
-			typedef Alloc									allocator_type;
-			typedef size_t									size_type;
-			typedef rbtree_node<value_type>					node;
-			typedef node*									node_ptr;
-			typedef ft::rbtree_iterator<node>				iterator;
-			typedef ft::rbtree_iterator<node>			const_iterator;
-			typedef ft::reverse_iterator<iterator>			reverse_iterator;
-			typedef ft::reverse_iterator<const_iterator>	const_reverse_iterator;
+			typedef T												value_type;
+			typedef Compare											key_compare;
+			typedef Alloc											allocator_type;
+			typedef size_t											size_type;
+			typedef rbtree_node<value_type>							node;
+			typedef node*											node_ptr;
+			typedef ft::rbtree_iterator<value_type, node>			iterator;
+			typedef ft::rbtree_iterator<const value_type, node>		const_iterator;
+			typedef ft::reverse_iterator<iterator>					reverse_iterator;
+			typedef ft::reverse_iterator<const_iterator>			const_reverse_iterator;
 
 		protected:
-			node_ptr		_root;
-			node_ptr		_NIL;
-			size_type		_size;
-			allocator_type	_alloc;
-			key_compare		_comp;
+			node_ptr										_root;
+			node_ptr										_NIL;
+			size_type										_size;
+			allocator_type									_alloc;
+			key_compare										_comp;
 
 		public:
 			rbtree(const allocator_type &alloc = allocator_type()) : _comp(key_compare())
@@ -122,7 +122,7 @@ namespace ft
 				return reverse_iterator(begin());
 			}
 
-			const_reverse_iterator rend() const
+			const_reverse_iterator rend(void) const
 			{
 				return const_reverse_iterator(begin());
 			}
@@ -168,11 +168,11 @@ namespace ft
 
 			iterator insert(iterator hint, const value_type &value)
 			{
-				node_ptr next = _next(hint.getCurrent());
-				if (_comp(hint.getCurrent()->data, value) && _comp(value, next->data))
+				node_ptr next = _next(hint.base());
+				if (_comp(hint.base()->data, value) && _comp(value, next->data))
 				{
 					node_ptr newNode = _newNode(value);
-					ft::pair<node_ptr, bool> r = _deepInsert(hint.getCurrent(), newNode);
+					ft::pair<node_ptr, bool> r = _deepInsert(hint.base(), newNode);
 					_size++;
 					return iterator(r.first, _root, _NIL);
 				}
@@ -181,8 +181,8 @@ namespace ft
 
 			void erase(iterator position)
 			{
-				if (position.getCurrent() != _NIL)
-					_deepRemove(position.getCurrent());
+				if (position.base() != _NIL)
+					_deepRemove(position.base());
 			}
 
 			size_type erase(value_type const &k)
@@ -212,7 +212,7 @@ namespace ft
 			{
 				node_ptr ret = _find(k);
 				if (!ret)	return end();
-				else		return iterator(ret, _root, _NIL);
+				else		return const_iterator(ret, _root, _NIL);
 			}
 
 			bool isIn(const value_type &k) const
@@ -225,7 +225,7 @@ namespace ft
 				iterator it = begin();
 				while (it != end())
 				{
-					node_ptr tmp = it.getCurrent();
+					node_ptr tmp = it.base();
 					if (_comp(k, tmp->data) || (!_comp(k, tmp->data) && !_comp(tmp->data, k)))
 						return it;
 					it++;
@@ -235,10 +235,10 @@ namespace ft
 
 			const_iterator lower_bound(const value_type &k) const
 			{
-				iterator it = begin();
+				const_iterator it = begin();
 				while (it != end())
 				{
-					node_ptr tmp = it.getCurrent();
+					node_ptr tmp = it.base();
 					if (_comp(k, tmp->data) || (!_comp(k, tmp->data) && !_comp(tmp->data, k)))
 						return it;
 					it++;
@@ -251,7 +251,7 @@ namespace ft
 				iterator it = begin();
 				while (it != end())
 				{
-					node_ptr tmp = it.getCurrent();
+					node_ptr tmp = it.base();
 					if (_comp(k, tmp->data))
 						return it;
 					it++;
@@ -261,10 +261,10 @@ namespace ft
 
 			const_iterator upper_bound(const value_type &k) const
 			{
-				iterator it = begin();
+				const_iterator it = begin();
 				while (it != end())
 				{
-					node_ptr tmp = it.getCurrent();
+					node_ptr tmp = it.base();
 					if (_comp(k, tmp->data))
 						return it;
 					it++;

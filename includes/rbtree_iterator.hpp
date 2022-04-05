@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 21:19:41 by acoezard          #+#    #+#             */
-/*   Updated: 2022/04/01 21:20:05 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/04/05 14:40:28 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 
 namespace ft
 {
-	template <class T>
-	class rbtree_iterator
+	template <class data, class T>
+	class rbtree_iterator : public ft::iterator<ft::bidirectional_iterator_tag, T>
 	{
 		public:
 			typedef T								value_type;
 			typedef T*								node_ptr;
-			typedef typename T::value_type			data;
+			//typedef typename T::value_type			data;
 			typedef data&							reference;
 			typedef data*							pointer;
 			typedef std::ptrdiff_t					difference_type;
@@ -40,9 +40,9 @@ namespace ft
 			rbtree_iterator(node_ptr it, node_ptr root, node_ptr NIL) : _it(it), _root(root), _NIL(NIL) {}
 			rbtree_iterator(const rbtree_iterator &cpy) : _it(cpy._it), _root(cpy._root), _NIL(cpy._NIL) {}
 
-			operator rbtree_iterator<const T>(void) const
+			operator rbtree_iterator<const data, T>(void) const
 			{
-				return rbtree_iterator<const T>(_it, _root, _NIL);
+				return rbtree_iterator<const data, T>(_it, _root, _NIL);
 			}
 
 			rbtree_iterator &operator=(const rbtree_iterator &it)
@@ -108,7 +108,7 @@ namespace ft
 				return tmp;
 			}
 
-			node_ptr getCurrent(void) const
+			node_ptr base(void) const
 			{
 				return _it;
 			}
@@ -155,7 +155,44 @@ namespace ft
 				}
 				return prev;
 			}
-		};
+	};
+
+	template <class data, class T1, class T2>
+	bool operator==(const rbtree_iterator<data, T1> &it1, const rbtree_iterator<data, T2> &it2)
+	{
+		return it1.base() == it2.base();
+	}
+
+	template <class data, class T1, class T2>
+	bool operator!=(const rbtree_iterator<data, T1> &it1, const rbtree_iterator<data, T2> &it2)
+	{
+		return !(it1 == it2);
+	}
+	/*
+	template <class T1, class T2>
+	bool operator<(const rbtree_iterator<T1> &it1, const rbtree_iterator<T2> &it2)
+	{
+		return it1.base() < it2.base();
+	}
+
+	template <class T1, class T2>
+	bool operator>(const rbtree_iterator<T1> &it1, const rbtree_iterator<T2> &it2)
+	{
+		return it2 < it1;
+	}
+
+	template <class T1, class T2>
+	bool operator<=(const rbtree_iterator<T1> &it1, const rbtree_iterator<T2> &it2)
+	{
+		return !(it1 > it2);
+	}
+
+	template <class T1, class T2>
+	bool operator>=(const rbtree_iterator<T1> &it1, const rbtree_iterator<T2> &it2)
+	{
+		return !(it1 < it2);
+	}
+	*/
 }
 
 #endif
