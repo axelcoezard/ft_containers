@@ -24,7 +24,6 @@ namespace ft
 		public:
 			typedef T								value_type;
 			typedef T*								node_ptr;
-			//typedef typename T::value_type			data;
 			typedef data&							reference;
 			typedef data*							pointer;
 			typedef std::ptrdiff_t					difference_type;
@@ -168,31 +167,6 @@ namespace ft
 	{
 		return !(it1 == it2);
 	}
-	/*
-	template <class T1, class T2>
-	bool operator<(const rbtree_iterator<T1> &it1, const rbtree_iterator<T2> &it2)
-	{
-		return it1.base() < it2.base();
-	}
-
-	template <class T1, class T2>
-	bool operator>(const rbtree_iterator<T1> &it1, const rbtree_iterator<T2> &it2)
-	{
-		return it2 < it1;
-	}
-
-	template <class T1, class T2>
-	bool operator<=(const rbtree_iterator<T1> &it1, const rbtree_iterator<T2> &it2)
-	{
-		return !(it1 > it2);
-	}
-
-	template <class T1, class T2>
-	bool operator>=(const rbtree_iterator<T1> &it1, const rbtree_iterator<T2> &it2)
-	{
-		return !(it1 < it2);
-	}
-	*/
 }
 
 #endif
