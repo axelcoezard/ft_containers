@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    fct.sh                                             :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/04/05 16:52:33 by acoezard          #+#    #+#              #
+#    Updated: 2022/04/05 16:53:10 by acoezard         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 #!/bin/bash
 
 EOC="\e[0m"
@@ -17,7 +29,6 @@ CC="clang++"
 CFLAGS="-Wall -Wextra -Werror -std=c++98"
 
 compile () {
-	# 1=file 2=define used {ft/std} 3=output_file 4?=compile_log
 	macro_name=$(echo "USING_${2}" | awk '{ print toupper($0) }')
 	compile_cmd="$CC $CFLAGS -o ${3} -I./$incl_path -D ${macro_name} ${1}"
 	if [ -n "$4" ]; then
@@ -39,7 +50,6 @@ getEmoji () {
 }
 
 getYN () {
-	# 1=integer
 	res='';
 	case $1 in
 		0) res="Y";;
@@ -49,19 +59,14 @@ getYN () {
 }
 
 getTime () {
-	# 1=integer
 	printf "%#3d%%" $1
 }
 
 printRes () {
-	# 1=file 2=compile 3=bin 4=output 5=std_compile 6=time
 	printf "%-35s: COMPILE: %s | RET: %s | OUT: %s | EFFICIENCY: %s\n" \
 		"$1" "$(getEmoji $2)" "$(getEmoji $3)" "$(getEmoji $4)" "$(getTime $6)"
 }
 
-# If diff_file empty, return 0 -> ok
-# If diff is about max_size, return 2 -> warning
-# Else, diff is something really important, return 1 -> error
 compare_output () {
 	# 1=diff_file
 	if ! [ -s $1 ]; then
@@ -88,8 +93,6 @@ getMillis () {
 }
 
 cmp_one () {
-	# 1=path/to/file
-
 	deepdir="deepthought"; logdir="logs"
 	mkdir -p $deepdir $logdir
 	container=$(echo $1 | cut -d "/" -f 2)
@@ -136,9 +139,7 @@ cmp_one () {
 }
 
 do_test () {
-	# 1=container_name
 	test_files=$(find "${srcs}/${1}" -type f -name '*.cpp' | sort)
-
 	for file in ${test_files[@]}; do
 		cmp_one "${file}"
 	done
