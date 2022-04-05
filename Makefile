@@ -6,7 +6,7 @@
 #    By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/01 10:40:18 by acoezard          #+#    #+#              #
-#    Updated: 2022/03/28 14:52:44 by acoezard         ###   ########.fr        #
+#    Updated: 2022/04/05 15:14:20 by acoezard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,9 @@ all: ${NAME}
 ${NAME}: ${OBJS}
 	@${CC} ${CFLAGS} ${OBJS} -o ${NAME}
 	@echo ${__GREEN}"Finished "${__WHITE}${NAME}" v"${VERSION}" bin target"${__EOC}
+
+test:
+	@cd tester && ./do.sh
 
 clean:
 	@rm -rf bin/
