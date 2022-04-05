@@ -6,7 +6,7 @@
 /*   By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 22:09:35 by acoezard          #+#    #+#             */
-/*   Updated: 2022/04/05 14:29:30 by acoezard         ###   ########.fr       */
+/*   Updated: 2022/04/05 16:33:49 by acoezard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,7 @@ namespace ft
 			{
 				return _tree.insert(val);
 			}
+
 			iterator insert(iterator position, const value_type &val)
 			{
 				return _tree.insert(position, val);
